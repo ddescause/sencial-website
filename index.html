@@ -92,6 +92,95 @@
             color: #4a90e2;
         }
 
+        .demo {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .demo-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .scenario-card h3 {
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+
+        .scenario-card p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .demo-btn.enhanced {
+            background: #28a745;
+        }
+
+        .demo-btn:hover {
+            opacity: 0.8;
+        }
+
+        .demo-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .sound-layers {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .sound-processing {
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .sound-processing.advanced {
+            background: #fff9e6;
+            border-left: 3px solid #feca57;
+        }
+
+        .status-display {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f4fd;
+            border-radius: 8px;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .restaurant-smart {
+            border: 2px solid #feca57;
+        }
+
         .problem {
             background: #f8f9fa;
             padding: 80px 0;
@@ -251,6 +340,10 @@
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 350px;
         }
 
         .market-card:hover {
@@ -268,6 +361,17 @@
         .market-card p {
             color: #666;
             margin-bottom: 25px;
+        }
+
+        .market-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .market-card-bottom {
+            margin-top: auto;
         }
 
         .pricing-info {
@@ -405,6 +509,10 @@
                 font-size: 3rem;
             }
             
+            .demo-scenarios {
+                grid-template-columns: 1fr;
+            }
+            
             .comparison-row {
                 grid-template-columns: 1fr;
                 text-align: center;
@@ -422,9 +530,81 @@
         <div class="container">
             <h1>Sencial</h1>
             <div class="tagline">Hear What Matters. Silence What Doesn't.</div>
-            <p>Revolutionary AI technology that detects, separates, and enhances sounds in real-time. Amplify voices, cancel noise, and personalize your hearing experience without expensive audiologist visits.</p>
-            <a href="#consumer" class="cta-primary">Try Beta App</a>
+            <p>Revolutionary AI software that transforms your AirPods, earbuds, or hearing aids into intelligent audio devices. Detects, separates, and enhances sounds in real-time without expensive hardware upgrades.</p>
+            <a href="#demo" class="cta-primary">Try Demo</a>
             <a href="#business" class="cta-secondary">Partner With Us</a>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2>Experience Sencial Audio Intelligence</h2>
+            <p style="text-align: center;">Hear how our AI transforms challenging listening environments with precise control</p>
+            
+            <div style="background: #f8f9ff; border-radius: 20px; padding: 40px;">
+                <div class="demo-scenarios">
+                    
+                    <!-- Street Scenario -->
+                    <div class="scenario-card">
+                        <h3>🚗 Busy Street Scene</h3>
+                        <p>Walking while talking on phone with precise sound control</p>
+                        
+                        <div>
+                            <button class="demo-btn" onclick="playScenario('street', 'original')">
+                                🔊 Original Audio
+                            </button>
+                            <button class="demo-btn enhanced" onclick="playScenario('street', 'enhanced')">
+                                ✨ Sencial Enhanced
+                            </button>
+                        </div>
+                        
+                        <div class="sound-layers">
+                            <div class="sound-processing">
+                                <strong>Sencial Processing:</strong><br>
+                                🚗 Car noise: -35dB (Cancel)<br>
+                                📯 Klaxons: -40dB (Cancel)<br>
+                                🚨 Sirens: -20dB (Keep 10%)<br>
+                                🗣️ Voice calls: +25dB (Amplify)<br>
+                                🐦 Birds: +5dB (Keep natural)
+                            </div>
+                            <div class="status-display" id="street-status">
+                                Click buttons to hear the difference
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Restaurant Scenario -->
+                    <div class="scenario-card restaurant-smart">
+                        <h3>🍽️ Smart Restaurant Mode</h3>
+                        <p>Advanced: Voice recognition isolates only your dinner companions</p>
+                        
+                        <div>
+                            <button class="demo-btn" onclick="playScenario('restaurant_smart', 'original')">
+                                🔊 Original Audio
+                            </button>
+                            <button class="demo-btn enhanced" onclick="playScenario('restaurant_smart', 'enhanced')">
+                                ✨ Smart Recognition
+                            </button>
+                        </div>
+                        
+                        <div class="sound-layers">
+                            <div class="sound-processing advanced">
+                                <strong>Advanced AI Processing:</strong><br>
+                                🎵 Loud music: -40dB (REMOVED)<br>
+                                🍽️ Background noise: -35dB (REMOVED)<br>
+                                👥 All voices: SEPARATED<br>
+                                ✅ Recognized voices: +25dB (Your table only)<br>
+                                ❌ Unknown voices: -40dB (Filtered out)
+                            </div>
+                            <div class="status-display" id="restaurant_smart-status">
+                                Click buttons to hear advanced voice recognition
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
@@ -454,7 +634,10 @@
     <!-- Solution Section -->
     <section class="solution">
         <div class="container">
-            <h2>The Sencial Solution: Audio Intelligence</h2>
+            <h2>The Sencial Solution: Software-Based Audio Intelligence</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 40px;">
+                Works with your existing AirPods, earbuds, and hearing aids - no new hardware required
+            </p>
             
             <div class="features">
                 <div class="feature">
@@ -518,6 +701,16 @@
                     <div class="checkmark">AI-Powered</div>
                 </div>
                 <div class="comparison-row">
+                    <div>Works with Existing Devices</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Software Solution</div>
+                    <div class="xmark">Hardware Only</div>
+                    <div class="checkmark">✓ (Works with AirPods, hearing aids)</div>
+                </div>
+                <div class="comparison-row">
                     <div>Modern Design</div>
                     <div class="xmark">✗</div>
                     <div class="checkmark">✓</div>
@@ -534,26 +727,38 @@
             <div class="market-cards">
                 <!-- Consumer App -->
                 <div class="market-card" id="consumer">
-                    <h3>Personal Hearing App</h3>
-                    <p>Transform your smartphone into an intelligent hearing device. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
-                    <div class="pricing-info">Early Bird: $10/month | Expected: $15/month</div>
-                    <button class="market-button" onclick="openModal('consumer')">Join Beta Waitlist</button>
+                    <div class="market-card-content">
+                        <h3>Personal Hearing App</h3>
+                        <p>Software that transforms your AirPods, earbuds, or hearing aids into intelligent audio devices. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
+                    </div>
+                    <div class="market-card-bottom">
+                        <div class="pricing-info">Early Bird: $15/month</div>
+                        <button class="market-button" onclick="openModal('consumer')">Join Beta Waitlist</button>
+                    </div>
                 </div>
 
                 <!-- B2B Licensing -->
                 <div class="market-card" id="business">
-                    <h3>Technology Licensing</h3>
-                    <p>Integrate our Audio Intelligence platform into your hearing aids, earbuds, or audio devices. White-label our breakthrough AI technology.</p>
-                    <div class="pricing-info">Setup: $50K + 3% revenue share</div>
-                    <button class="market-button" onclick="openModal('b2b')">Partner With Us</button>
+                    <div class="market-card-content">
+                        <h3>Technology Licensing</h3>
+                        <p>Integrate our Audio Intelligence platform into your hearing aids, earbuds, or audio devices. White-label our breakthrough AI technology.</p>
+                    </div>
+                    <div class="market-card-bottom">
+                        <div class="pricing-info">Setup + revenue share</div>
+                        <button class="market-button" onclick="openModal('b2b')">Partner With Us</button>
+                    </div>
                 </div>
 
                 <!-- API Services -->
                 <div class="market-card">
-                    <h3>Developer API</h3>
-                    <p>Build applications with sound separation and enhancement capabilities. Perfect for accessibility apps, smart home devices, and voice interfaces.</p>
-                    <div class="pricing-info">Usage-based API pricing</div>
-                    <button class="market-button" onclick="openModal('api')">Get API Access</button>
+                    <div class="market-card-content">
+                        <h3>Developer API</h3>
+                        <p>Build applications with sound separation and enhancement capabilities. Perfect for accessibility apps, smart home devices, and voice interfaces.</p>
+                    </div>
+                    <div class="market-card-bottom">
+                        <div class="pricing-info">Usage-based API pricing</div>
+                        <button class="market-button" onclick="openModal('api')">Get API Access</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -829,3 +1034,91 @@
         document.getElementById('apiForm').addEventListener('submit', function(e) {
             e.preventDefault();
             submitForm(this, 'api');
+        });
+
+        // Audio demo functionality
+        function playScenario(scenario, type) {
+            const statusDiv = document.getElementById(scenario + '-status');
+            const buttons = document.querySelectorAll('.demo-btn');
+            
+            // Disable all buttons temporarily
+            buttons.forEach(btn => btn.disabled = true);
+            
+            // Show loading state
+            statusDiv.innerHTML = '<div style="color: #4a90e2;">🔄 Processing audio...</div>';
+            
+            setTimeout(() => {
+                let message = '';
+                
+                if (type === 'original') {
+                    switch(scenario) {
+                        case 'street':
+                            message = '<strong style="color: #dc3545;">Original Street Audio</strong><br>🚗 Car noise: 80dB | 📯 Klaxons: 90dB | 🚨 Sirens: 85dB | 🗣️ Voice: 62dB | 🐦 Birds: 45dB<br><em>Voice completely drowned out by traffic and klaxons</em>';
+                            break;
+                        case 'restaurant_smart':
+                            message = '<strong style="color: #dc3545;">Original Restaurant Audio (Chaos)</strong><br>🎵 Loud music: 75dB | 🍽️ Background noise: 70dB | 👥 Multiple voices: 65dB each | 🗣️ Your table: 60dB<br><em>Complete audio chaos - your companions voices lost among dozens of others</em>';
+                            break;
+                    }
+                } else {
+                    switch(scenario) {
+                        case 'street':
+                            message = '<strong style="color: #28a745;">Sencial Enhanced Audio</strong><br>🚗 Car noise: CANCELED | 📯 Klaxons: CANCELED | 🚨 Sirens: 10% kept | 🗣️ Voice: +25dB | 🐦 Birds: +5dB<br><em>Voice crystal clear, emergency sirens audible at safe level, birds naturally enhanced</em>';
+                            break;
+                        case 'restaurant_smart':
+                            message = '<strong style="color: #28a745;">Advanced Voice Recognition Mode</strong><br>🎵 Loud music: REMOVED | 🍽️ Background noise: REMOVED | 👥 Unknown voices: FILTERED OUT | ✅ Recognized table voices: +25dB<br><em>Only your dinner companions voices remain - all other sounds eliminated through advanced voice recognition</em>';
+                            break;
+                    }
+                }
+                
+                statusDiv.innerHTML = message;
+                
+                // Re-enable buttons
+                buttons.forEach(btn => btn.disabled = false);
+                
+                // Show processing details for enhanced audio
+                if (type === 'enhanced') {
+                    setTimeout(() => {
+                        if (scenario === 'restaurant_smart') {
+                            statusDiv.innerHTML += '<br><div style="margin-top: 10px; padding: 8px; background: #fff9e6; border-radius: 5px; font-size: 12px; border-left: 3px solid #feca57;"><strong>Advanced AI Analysis:</strong><br>✓ 12 unique voices detected<br>✓ 3 voices recognized as table companions<br>✓ Voice patterns learned and saved<br>✓ Background music frequency isolated<br>✓ Real-time audio separation applied<br>✓ Unknown voices filtered to -40dB</div>';
+                        } else {
+                            statusDiv.innerHTML += '<br><div style="margin-top: 10px; padding: 8px; background: #e8f5e8; border-radius: 5px; font-size: 12px;"><strong>AI Processing Complete:</strong><br>✓ Audio sources detected and categorized<br>✓ Background noise separated<br>✓ Target sounds enhanced<br>✓ Real-time adjustment applied</div>';
+                        }
+                    }, 1000);
+                }
+            }, 2000);
+        }
+
+        function submitForm(form, market) {
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('.submit-btn');
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitButton.textContent = 'Submitted!';
+                submitButton.style.background = '#28a745';
+                
+                setTimeout(() => {
+                    closeModal(market);
+                    submitButton.textContent = submitButton.textContent.includes('Beta') ? 'Join Beta Waitlist' : 
+                                              submitButton.textContent.includes('Partnership') ? 'Request Partnership Discussion' : 'Get API Beta Access';
+                    submitButton.style.background = '#4a90e2';
+                    submitButton.disabled = false;
+                    form.reset();
+                }, 2000);
+            }, 1500);
+        }
+
+        // Smooth scrolling for demo link
+        document.querySelector('a[href="#demo"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('demo').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
