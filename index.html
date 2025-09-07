@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sencial - Revolutionary Hearing Enhancement Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 20px 50px;
+            border: 2px solid white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 10px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #4a90e2;
+        }
+
+        .problem {
+            background: #f8f9fa;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #4a90e2;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .solution {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .solution h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .feature p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .comparison {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
+            padding: 20px 40px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-row:first-child {
+            background: #4a90e2;
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-row:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .xmark {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .markets {
+            background: white;
+            padding: 80px 0;
+        }
+
+        .markets h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .market-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .market-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .market-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border-color: #4a90e2;
+        }
+
+        .market-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .market-card p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .pricing-info {
+            background: #f0f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .market-button {
+            background: #4a90e2;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .market-button:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .submit-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #357abd;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .comparison-row:first-child {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Sencial</h1>
+            <div class="tagline">Hear What Matters. Silence What Doesn't.</div>
+            <p>Revolutionary AI technology that detects, separates, and enhances sounds in real-time. Amplify voices, cancel noise, and personalize your hearing experience without expensive audiologist visits.</p>
+            <a href="#consumer" class="cta-primary">Try Beta App</a>
+            <a href="#business" class="cta-secondary">Partner With Us</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>The Hearing Crisis</h2>
+            <p>Traditional hearing aids fail because they amplify everything - including unwanted noise</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">1.5B</span>
+                    <div class="stat-label">People with hearing issues worldwide</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">&lt;2%</span>
+                    <div class="stat-label">Actually use hearing aids effectively</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">80%</span>
+                    <div class="stat-label">Abandon their hearing aids within 2 years</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <h2>The Sencial Solution: Audio Intelligence</h2>
+            
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>DETECT</h3>
+                    <p>AI identifies all individual sounds - voices, music, traffic, nature - and categorizes them in real-time</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔀</div>
+                    <h3>SEPARATE</h3>
+                    <p>Advanced algorithms isolate each sound into independent, controllable audio layers</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎛️</div>
+                    <h3>ENHANCE</h3>
+                    <p>Amplify what you want to hear, reduce distractions, or eliminate unwanted noise completely</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison">
+        <div class="container">
+            <h2>Sencial vs Traditional Hearing Aids</h2>
+            
+            <div class="comparison-table">
+                <div class="comparison-row">
+                    <div>Feature</div>
+                    <div>Traditional Hearing Aids</div>
+                    <div>Sencial</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Individual Sound Detection</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Real-time Sound Separation</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Selective Amplification</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+                <div class="comparison-row">
+                    <div>No Audiologist Required</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Personalized Settings</div>
+                    <div>Limited</div>
+                    <div class="checkmark">Full Control</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Noise Cancellation</div>
+                    <div>Basic</div>
+                    <div class="checkmark">AI-Powered</div>
+                </div>
+                <div class="comparison-row">
+                    <div>Modern Design</div>
+                    <div class="xmark">✗</div>
+                    <div class="checkmark">✓</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="markets">
+        <div class="container">
+            <h2>Choose Your Solution</h2>
+            
+            <div class="market-cards">
+                <!-- Consumer App -->
+                <div class="market-card" id="consumer">
+                    <h3>Personal Hearing App</h3>
+                    <p>Transform your smartphone into an intelligent hearing device. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
+                    <div class="pricing-info">Early Bird: $10/month | Expected: $15/month</div>
+                    <button class="market-button" onclick="openModal('consumer')">Join Beta Waitlist</button>
+                </div>
+
+                <!-- B2B Licensing -->
+                <div class="market-card" id="business">
+                    <h3>Technology Licensing</h3>
+                    <p>Integrate our Audio Intelligence platform into your hearing aids, earbuds, or audio devices. White-label our breakthrough AI technology.</p>
+                    <div class="pricing-info">Setup: $50K + 3% revenue share</div>
+                    <button class="market-button" onclick="openModal('b2b')">Partner With Us</button>
+                </div>
+
+                <!-- API Services -->
+                <div class="market-card">
+                    <h3>Developer API</h3>
+                    <p>Build applications with sound separation and enhancement capabilities. Perfect for accessibility apps, smart home devices, and voice interfaces.</p>
+                    <div class="pricing-info">Usage-based API pricing</div>
+                    <button class="market-button" onclick="openModal('api')">Get API Access</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consumer Modal -->
+    <div id="consumerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('consumer')">&times;</span>
+            <h2>Join the Hearing Revolution</h2>
+            <form id="consumerForm">
+                <div class="form-group">
+                    <label>Name *</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Age Range</label>
+                    <select name="age_range">
+                        <option value="">Select...</option>
+                        <option value="18-30">18-30</option>
+                        <option value="31-45">31-45</option>
+                        <option value="46-60">46-60</option>
+                        <option value="61-75">61-75</option>
+                        <option value="75+">75+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Hearing Situation *</label>
+                    <select name="hearing_situation" required>
+                        <option value="">Select...</option>
+                        <option value="mild_hearing_loss">Mild hearing loss</option>
+                        <option value="moderate_hearing_loss">Moderate hearing loss</option>
+                        <option value="severe_hearing_loss">Severe hearing loss</option>
+                        <option value="difficulty_noisy">Difficulty in noisy environments</option>
+                        <option value="tinnitus">Tinnitus (ringing in ears)</option>
+                        <option value="audio_customization">Want better audio control</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Current hearing aid experience?</label>
+                    <select name="hearing_aid_experience">
+                        <option value="">Select...</option>
+                        <option value="never_tried">Never tried hearing aids</option>
+                        <option value="tried_disliked">Tried but didn't like them</option>
+                        <option value="currently_using">Currently using hearing aids</option>
+                        <option value="stopped_using">Used to use but stopped</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Would you pay $10-15/month for this solution? *</label>
+                    <select name="willingness_to_pay" required>
+                        <option value="">Select...</option>
+                        <option value="definitely">Definitely yes</option>
+                        <option value="probably">Probably yes</option>
+                        <option value="maybe">Maybe, need to try first</option>
+                        <option value="probably_not">Probably not</option>
+                        <option value="definitely_not">Definitely not</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>What's your biggest hearing challenge?</label>
+                    <textarea name="biggest_challenge" placeholder="Describe the situations where you struggle most with hearing..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>When would you want to start using this? *</label>
+                    <select name="timeline" required>
+                        <option value="">Select...</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="1-3_months">1-3 months</option>
+                        <option value="3-6_months">3-6 months</option>
+                        <option value="6-12_months">6-12 months</option>
+                        <option value="over_1_year">Over 1 year</option>
+                    </select>
+                </div>
+                <input type="hidden" name="market" value="consumer">
+                <button type="submit" class="submit-btn">Join Beta Waitlist</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- B2B Modal -->
+    <div id="b2bModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('b2b')">&times;</span>
+            <h2>Technology Partnership</h2>
+            <form id="b2bForm">
+                <div class="form-group">
+                    <label>Name *</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Company *</label>
+                    <input type="text" name="company" required>
+                </div>
+                <div class="form-group">
+                    <label>Job Title *</label>
+                    <input type="text" name="job_title" required>
+                </div>
+                <div class="form-group">
+                    <label>Company Type *</label>
+                    <select name="company_type" required>
+                        <option value="">Select...</option>
+                        <option value="hearing_aid_manufacturer">Hearing Aid Manufacturer</option>
+                        <option value="earbud_headphone">Earbud/Headphone Company</option>
+                        <option value="audio_device">Audio Device Manufacturer</option>
+                        <option value="healthcare_provider">Healthcare Provider</option>
+                        <option value="tech_platform">Technology Platform</option>
+                        <option value="retailer">Audio Retailer</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Annual Revenue Range</label>
+                    <select name="revenue_range">
+                        <option value="">Select...</option>
+                        <option value="startup">Startup/Pre-revenue</option>
+                        <option value="under_1m">Under $1M</option>
+                        <option value="1m_10m">$1M - $10M</option>
+                        <option value="10m_100m">$10M - $100M</option>
+                        <option value="100m_1b">$100M - $1B</option>
+                        <option value="over_1b">Over $1B</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Current audio products/services?</label>
+                    <textarea name="current_products" placeholder="Describe your current audio-related products or services..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Licensing budget available? *</label>
+                    <select name="budget_available" required>
+                        <option value="">Select...</option>
+                        <option value="yes_approved">Yes, budget approved ($50K+)</option>
+                        <option value="yes_pending">Yes, pending approval</option>
+                        <option value="exploring">Exploring options</option>
+                        <option value="no_budget">No current budget</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Integration timeline? *</label>
+                    <select name="timeline" required>
+                        <option value="">Select...</option>
+                        <option value="immediate">Immediate (1-3 months)</option>
+                        <option value="short_term">Short term (3-6 months)</option>
+                        <option value="medium_term">Medium term (6-12 months)</option>
+                        <option value="long_term">Long term (12+ months)</option>
+                        <option value="exploring">Just exploring</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Specific integration interest?</label>
+                    <textarea name="integration_interest" placeholder="How would you integrate our Audio Intelligence technology?"></textarea>
+                </div>
+                <input type="hidden" name="market" value="b2b">
+                <button type="submit" class="submit-btn">Request Partnership Discussion</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- API Modal -->
+    <div id="apiModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('api')">&times;</span>
+            <h2>Audio Intelligence API</h2>
+            <form id="apiForm">
+                <div class="form-group">
+                    <label>Name *</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email *</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Company/Project</label>
+                    <input type="text" name="company">
+                </div>
+                <div class="form-group">
+                    <label>Developer Role *</label>
+                    <select name="developer_role" required>
+                        <option value="">Select...</option>
+                        <option value="software_engineer">Software Engineer</option>
+                        <option value="ai_researcher">AI Researcher</option>
+                        <option value="product_manager">Product Manager</option>
+                        <option value="founder">Founder/Entrepreneur</option>
+                        <option value="student">Student/Academic</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Application Type *</label>
+                    <select name="application_type" required>
+                        <option value="">Select...</option>
+                        <option value="accessibility_app">Accessibility Application</option>
+                        <option value="smart_home">Smart Home Device</option>
+                        <option value="voice_interface">Voice Interface/Assistant</option>
+                        <option value="healthcare">Healthcare Application</option>
+                        <option value="education">Educational Tool</option>
+                        <option value="audio_processing">Audio Processing Tool</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Expected monthly API calls</label>
+                    <select name="api_volume">
+                        <option value="">Select...</option>
+                        <option value="under_1k">Under 1,000</option>
+                        <option value="1k_10k">1,000 - 10,000</option>
+                        <option value="10k_100k">10,000 - 100,000</option>
+                        <option value="100k_1m">100,000 - 1M</option>
+                        <option value="over_1m">Over 1M</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget for API services? *</label>
+                    <select name="api_budget" required>
+                        <option value="">Select...</option>
+                        <option value="free_only">Free tier only</option>
+                        <option value="under_100">Under $100/month</option>
+                        <option value="100_500">$100-$500/month</option>
+                        <option value="500_2000">$500-$2000/month</option>
+                        <option value="over_2000">Over $2000/month</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Describe your use case *</label>
+                    <textarea name="use_case" placeholder="How would you use audio separation/enhancement APIs?" required></textarea>
+                </div>
+                <input type="hidden" name="market" value="api">
+                <button type="submit" class="submit-btn">Get API Beta Access</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(market) {
+            document.getElementById(market + 'Modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(market) {
+            document.getElementById(market + 'Modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submissions
+        document.getElementById('consumerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'consumer');
+        });
+
+        document.getElementById('b2bForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'b2b');
+        });
+
+        document.getElementById('apiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'api');
