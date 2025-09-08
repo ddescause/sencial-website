@@ -93,7 +93,7 @@
         }
 
         .demo {
-            background: #f8f9fa;
+            background: white;
             padding: 80px 0;
         }
 
@@ -104,81 +104,136 @@
             color: #333;
         }
 
+        .demo-container {
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4f8 100%);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
         .demo-scenarios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
         }
 
         .scenario-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
         }
 
         .scenario-card h3 {
-            color: #4a90e2;
+            color: #333;
             margin-bottom: 15px;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .scenario-card p {
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 25px;
+            justify-content: center;
         }
 
         .demo-btn {
-            background: #dc3545;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
-            margin: 5px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
         }
 
         .demo-btn.enhanced {
-            background: #28a745;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
         }
 
         .demo-btn:hover {
-            opacity: 0.8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
+        }
+
+        .demo-btn.enhanced:hover {
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
         }
 
         .demo-btn:disabled {
-            opacity: 0.5;
+            opacity: 0.6;
             cursor: not-allowed;
-        }
-
-        .sound-layers {
-            font-size: 12px;
-            color: #666;
+            transform: none;
         }
 
         .sound-processing {
-            margin-bottom: 8px;
-            padding: 8px;
             background: #f8f9fa;
-            border-radius: 5px;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4a90e2;
         }
 
         .sound-processing.advanced {
-            background: #fff9e6;
-            border-left: 3px solid #feca57;
+            background: linear-gradient(135deg, #fff9e6 0%, #fef5e7 100%);
+            border-left: 4px solid #feca57;
+        }
+
+        .sound-processing strong {
+            color: #333;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .sound-processing {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
         }
 
         .status-display {
-            margin-top: 10px;
-            padding: 10px;
-            background: #e8f4fd;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            padding: 20px;
+            border-radius: 15px;
             border-left: 4px solid #4a90e2;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
         }
 
         .restaurant-smart {
             border: 2px solid #feca57;
+            background: linear-gradient(135deg, #ffffff 0%, #fffef8 100%);
+        }
+
+        .restaurant-smart .sound-processing.advanced {
+            border-left: 4px solid #ff6b35;
+        }
+
+        .restaurant-smart .status-display {
+            background: linear-gradient(135deg, #fff9e6 0%, #fef5e7 100%);
+            border-left: 4px solid #feca57;
         }
 
         .problem {
@@ -282,13 +337,15 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .comparison-row {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 20px;
-            padding: 20px 40px;
+            grid-template-columns: 1.5fr 1fr 1.3fr;
+            gap: 15px;
+            padding: 8px 30px;
             border-bottom: 1px solid #eee;
         }
 
@@ -509,8 +566,27 @@
                 font-size: 3rem;
             }
             
+            .demo-container {
+                padding: 30px 20px;
+                margin: 0 10px;
+            }
+            
             .demo-scenarios {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .scenario-card {
+                padding: 30px 20px;
+            }
+            
+            .demo-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .demo-btn {
+                width: 100%;
             }
             
             .comparison-row {
@@ -540,9 +616,9 @@
     <section class="demo" id="demo">
         <div class="container">
             <h2>Experience Sencial Audio Intelligence</h2>
-            <p style="text-align: center;">Hear how our AI transforms challenging listening environments with precise control</p>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 40px;">Hear how our AI transforms challenging listening environments with precise control</p>
             
-            <div style="background: #f8f9ff; border-radius: 20px; padding: 40px;">
+            <div class="demo-container">
                 <div class="demo-scenarios">
                     
                     <!-- Street Scenario -->
@@ -550,7 +626,7 @@
                         <h3>🚗 Busy Street Scene</h3>
                         <p>Walking while talking on phone with precise sound control</p>
                         
-                        <div>
+                        <div class="demo-buttons">
                             <button class="demo-btn" onclick="playScenario('street', 'original')">
                                 🔊 Original Audio
                             </button>
@@ -579,7 +655,7 @@
                         <h3>🍽️ Smart Restaurant Mode</h3>
                         <p>Advanced: Voice recognition isolates only your dinner companions</p>
                         
-                        <div>
+                        <div class="demo-buttons">
                             <button class="demo-btn" onclick="playScenario('restaurant_smart', 'original')">
                                 🔊 Original Audio
                             </button>
@@ -691,6 +767,11 @@
                     <div class="checkmark">✓</div>
                 </div>
                 <div class="comparison-row">
+                    <div>Audiogram / Hearing test</div>
+                    <div>Audiologist</div>
+                    <div class="checkmark">Embedded</div>
+                </div>
+                <div class="comparison-row">
                     <div>Personalized Settings</div>
                     <div>Limited</div>
                     <div class="checkmark">Full Control</div>
@@ -732,7 +813,7 @@
                         <p>Software that transforms your AirPods, earbuds, or hearing aids into intelligent audio devices. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
                     </div>
                     <div class="market-card-bottom">
-                        <div class="pricing-info">Early Bird: $15/month</div>
+                        <div class="pricing-info">Early Bird: $25/month</div>
                         <button class="market-button" onclick="openModal('consumer')">Join Beta Waitlist</button>
                     </div>
                 </div>
@@ -799,6 +880,7 @@
                         <option value="difficulty_noisy">Difficulty in noisy environments</option>
                         <option value="tinnitus">Tinnitus (ringing in ears)</option>
                         <option value="audio_customization">Want better audio control</option>
+                        <option value="hearing_protection">Want to protect my hearing</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
@@ -813,7 +895,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Would you pay $10-15/month for this solution? *</label>
+                    <label>Would you pay $25/month for this solution? *</label>
                     <select name="willingness_to_pay" required>
                         <option value="">Select...</option>
                         <option value="definitely">Definitely yes</option>
@@ -966,6 +1048,8 @@
                         <option value="healthcare">Healthcare Application</option>
                         <option value="education">Educational Tool</option>
                         <option value="audio_processing">Audio Processing Tool</option>
+                        <option value="robots_sound_input">Robots sound input</option>
+                        <option value="defense_security">Defense / Security</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
