@@ -113,127 +113,175 @@
 
         .demo-scenarios {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 40px;
             margin-top: 30px;
         }
 
-        .scenario-card {
+        .phone-mockup {
+            background: #000;
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            width: 340px;
+            height: 700px;
+        }
+
+        .phone-screen {
             background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .scenario-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-        }
-
-        .scenario-card h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-            font-weight: 600;
-        }
-
-        .scenario-card p {
-            color: #666;
-            margin-bottom: 25px;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
-
-        .demo-buttons {
+            border-radius: 25px;
+            height: 100%;
             display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            justify-content: center;
+            flex-direction: column;
+            overflow: hidden;
         }
 
-        .demo-btn {
-            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        .phone-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 40px 20px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 20px;
+            background: #000;
+            border-radius: 15px;
+        }
+
+        .scene-detected {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .scene-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .scene-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .phone-content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .sound-source {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sound-source:last-child {
+            border-bottom: none;
+        }
+
+        .sound-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .sound-emoji {
+            font-size: 20px;
+            width: 35px;
+            text-align: center;
+        }
+
+        .sound-details {
+            flex: 1;
+        }
+
+        .sound-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .sound-level {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a90e2;
+            cursor: pointer;
+        }
+
+        .volume-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a90e2;
+            min-width: 35px;
+        }
+
+        .phone-footer {
+            padding: 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .processing-status {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .demo-toggle {
+            background: #4a90e2;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
+            padding: 12px 20px;
+            border-radius: 20px;
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
         }
 
-        .demo-btn.enhanced {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+        .cancelled {
+            opacity: 0.3;
         }
 
-        .demo-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.4);
-        }
-
-        .demo-btn.enhanced:hover {
-            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
-        }
-
-        .demo-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .sound-processing {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 15px;
-            border-left: 4px solid #4a90e2;
-        }
-
-        .sound-processing.advanced {
-            background: linear-gradient(135deg, #fff9e6 0%, #fef5e7 100%);
-            border-left: 4px solid #feca57;
-        }
-
-        .sound-processing strong {
-            color: #333;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-
-        .sound-processing {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        .status-display {
-            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
-            padding: 20px;
-            border-radius: 15px;
-            border-left: 4px solid #4a90e2;
-            min-height: 80px;
-            display: flex;
-            align-items: center;
-        }
-
-        .restaurant-smart {
-            border: 2px solid #feca57;
-            background: linear-gradient(135deg, #ffffff 0%, #fffef8 100%);
-        }
-
-        .restaurant-smart .sound-processing.advanced {
-            border-left: 4px solid #ff6b35;
-        }
-
-        .restaurant-smart .status-display {
-            background: linear-gradient(135deg, #fff9e6 0%, #fef5e7 100%);
-            border-left: 4px solid #feca57;
+        .enhanced {
+            color: #28a745;
+            font-weight: 600;
         }
 
         .problem {
@@ -606,9 +654,9 @@
         <div class="container">
             <h1>Sencial</h1>
             <div class="tagline">Hear What Matters. Silence What Doesn't.</div>
-            <p>Revolutionary AI software that transforms your AirPods, earbuds, or hearing aids into intelligent audio devices. Detects, separates, and enhances sounds in real-time without expensive hardware upgrades.</p>
+            <p>The intelligent hearing app that adapts sound to you. Whether you have hearing loss or want to protect your hearing, Sencial transforms noisy environments into personalized audio experiences.</p>
             <a href="#demo" class="cta-primary">Try Demo</a>
-            <a href="#business" class="cta-secondary">Partner With Us</a>
+            <a href="#download" class="cta-secondary">Download App</a>
         </div>
     </section>
 
@@ -621,60 +669,176 @@
             <div class="demo-container">
                 <div class="demo-scenarios">
                     
-                    <!-- Street Scenario -->
-                    <div class="scenario-card">
-                        <h3>🚗 Busy Street Scene</h3>
-                        <p>Walking while talking on phone with precise sound control</p>
-                        
-                        <div class="demo-buttons">
-                            <button class="demo-btn" onclick="playScenario('street', 'original')">
-                                🔊 Original Audio
-                            </button>
-                            <button class="demo-btn enhanced" onclick="playScenario('street', 'enhanced')">
-                                ✨ Sencial Enhanced
-                            </button>
-                        </div>
-                        
-                        <div class="sound-layers">
-                            <div class="sound-processing">
-                                <strong>Sencial Processing:</strong><br>
-                                🚗 Car noise: -35dB (Cancel)<br>
-                                📯 Klaxons: -40dB (Cancel)<br>
-                                🚨 Sirens: -20dB (Keep 10%)<br>
-                                🗣️ Voice calls: +25dB (Amplify)<br>
-                                🐦 Birds: +5dB (Keep natural)
+                    <!-- Street Scenario Phone Mockup -->
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="phone-header">
+                                <div class="scene-detected">Scene Detected</div>
+                                <div class="scene-icon">🚗</div>
+                                <div class="scene-title">Busy Street</div>
                             </div>
-                            <div class="status-display" id="street-status">
-                                Click buttons to hear the difference
+                            <div class="phone-content" id="street-content">
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🚗</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Traffic</div>
+                                            <div class="sound-level">80dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0">
+                                        <div class="volume-value">0%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">📯</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Klaxons</div>
+                                            <div class="sound-level">90dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="10">
+                                        <div class="volume-value">10%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🚨</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Sirens</div>
+                                            <div class="sound-level">85dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="10">
+                                        <div class="volume-value">10%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🗣️</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Conversation</div>
+                                            <div class="sound-level">62dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="200" value="150">
+                                        <div class="volume-value enhanced">150%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🐦</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Birds</div>
+                                            <div class="sound-level">45dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="200" value="100">
+                                        <div class="volume-value">100%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-footer">
+                                <div class="processing-status">🎧 Sencial Active</div>
+                                <button class="demo-toggle" onclick="toggleDemo('street')">Toggle Original</button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Advanced Restaurant Scenario -->
-                    <div class="scenario-card restaurant-smart">
-                        <h3>🍽️ Smart Restaurant Mode</h3>
-                        <p>Advanced: Voice recognition isolates only your dinner companions</p>
-                        
-                        <div class="demo-buttons">
-                            <button class="demo-btn" onclick="playScenario('restaurant_smart', 'original')">
-                                🔊 Original Audio
-                            </button>
-                            <button class="demo-btn enhanced" onclick="playScenario('restaurant_smart', 'enhanced')">
-                                ✨ Smart Recognition
-                            </button>
-                        </div>
-                        
-                        <div class="sound-layers">
-                            <div class="sound-processing advanced">
-                                <strong>Advanced AI Processing:</strong><br>
-                                🎵 Loud music: -40dB (REMOVED)<br>
-                                🍽️ Background noise: -35dB (REMOVED)<br>
-                                👥 All voices: SEPARATED<br>
-                                ✅ Recognized voices: +25dB (Your table only)<br>
-                                ❌ Unknown voices: -40dB (Filtered out)
+                    <!-- Restaurant Scenario Phone Mockup -->
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="phone-notch"></div>
+                            <div class="phone-header">
+                                <div class="scene-detected">Scene Detected</div>
+                                <div class="scene-icon">🍽️</div>
+                                <div class="scene-title">Restaurant</div>
                             </div>
-                            <div class="status-display" id="restaurant_smart-status">
-                                Click buttons to hear advanced voice recognition
+                            <div class="phone-content" id="restaurant-content">
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🎵</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Background Music</div>
+                                            <div class="sound-level">75dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0">
+                                        <div class="volume-value">0%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🍽️</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Kitchen Noise</div>
+                                            <div class="sound-level">70dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0">
+                                        <div class="volume-value">0%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">👥</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Other Diners</div>
+                                            <div class="sound-level">65dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="10">
+                                        <div class="volume-value">10%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🗣️</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Your Table</div>
+                                            <div class="sound-level">60dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="200" value="170">
+                                        <div class="volume-value enhanced">170%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🍷</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Glasses & Cutlery</div>
+                                            <div class="sound-level">50dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="30">
+                                        <div class="volume-value">30%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="phone-footer">
+                                <div class="processing-status">🎧 Sencial Active</div>
+                                <button class="demo-toggle" onclick="toggleDemo('restaurant')">Toggle Original</button>
                             </div>
                         </div>
                     </div>
@@ -772,6 +936,11 @@
                     <div class="checkmark">Embedded</div>
                 </div>
                 <div class="comparison-row">
+                    <div>Own voice</div>
+                    <div>Amplified</div>
+                    <div class="checkmark">Recognized and excluded</div>
+                </div>
+                <div class="comparison-row">
                     <div>Personalized Settings</div>
                     <div>Limited</div>
                     <div class="checkmark">Full Control</div>
@@ -800,45 +969,27 @@
         </div>
     </section>
 
-    <!-- Markets Section -->
-    <section class="markets">
+    <!-- Download Section -->
+    <section class="markets" id="download">
         <div class="container">
-            <h2>Choose Your Solution</h2>
+            <h2>Get Sencial Today</h2>
             
-            <div class="market-cards">
+            <div style="max-width: 600px; margin: 0 auto;">
                 <!-- Consumer App -->
-                <div class="market-card" id="consumer">
+                <div class="market-card" id="consumer" style="margin: 0 auto;">
                     <div class="market-card-content">
-                        <h3>Personal Hearing App</h3>
-                        <p>Software that transforms your AirPods, earbuds, or hearing aids into intelligent audio devices. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
+                        <h3>Sencial Hearing App</h3>
+                        <p>Transform your AirPods, earbuds, or hearing aids into intelligent audio devices. Perfect for people with hearing difficulties or anyone wanting better audio control in noisy environments.</p>
+                        <div style="margin: 20px 0;">
+                            <div style="color: #666; margin-bottom: 10px;">✓ Works with existing devices</div>
+                            <div style="color: #666; margin-bottom: 10px;">✓ Real-time sound separation</div>
+                            <div style="color: #666; margin-bottom: 10px;">✓ Built-in hearing test</div>
+                            <div style="color: #666;">✓ No audiologist required</div>
+                        </div>
                     </div>
                     <div class="market-card-bottom">
                         <div class="pricing-info">Early Bird: $25/month</div>
                         <button class="market-button" onclick="openModal('consumer')">Join Beta Waitlist</button>
-                    </div>
-                </div>
-
-                <!-- B2B Licensing -->
-                <div class="market-card" id="business">
-                    <div class="market-card-content">
-                        <h3>Technology Licensing</h3>
-                        <p>Integrate our Audio Intelligence platform into your hearing aids, earbuds, or audio devices. White-label our breakthrough AI technology.</p>
-                    </div>
-                    <div class="market-card-bottom">
-                        <div class="pricing-info">Setup + revenue share</div>
-                        <button class="market-button" onclick="openModal('b2b')">Partner With Us</button>
-                    </div>
-                </div>
-
-                <!-- API Services -->
-                <div class="market-card">
-                    <div class="market-card-content">
-                        <h3>Developer API</h3>
-                        <p>Build applications with sound separation and enhancement capabilities. Perfect for accessibility apps, smart home devices, and voice interfaces.</p>
-                    </div>
-                    <div class="market-card-bottom">
-                        <div class="pricing-info">Usage-based API pricing</div>
-                        <button class="market-button" onclick="openModal('api')">Get API Access</button>
                     </div>
                 </div>
             </div>
@@ -926,164 +1077,6 @@
         </div>
     </div>
 
-    <!-- B2B Modal -->
-    <div id="b2bModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('b2b')">&times;</span>
-            <h2>Technology Partnership</h2>
-            <form id="b2bForm">
-                <div class="form-group">
-                    <label>Name *</label>
-                    <input type="text" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Company *</label>
-                    <input type="text" name="company" required>
-                </div>
-                <div class="form-group">
-                    <label>Job Title *</label>
-                    <input type="text" name="job_title" required>
-                </div>
-                <div class="form-group">
-                    <label>Company Type *</label>
-                    <select name="company_type" required>
-                        <option value="">Select...</option>
-                        <option value="hearing_aid_manufacturer">Hearing Aid Manufacturer</option>
-                        <option value="earbud_headphone">Earbud/Headphone Company</option>
-                        <option value="audio_device">Audio Device Manufacturer</option>
-                        <option value="healthcare_provider">Healthcare Provider</option>
-                        <option value="tech_platform">Technology Platform</option>
-                        <option value="retailer">Audio Retailer</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Annual Revenue Range</label>
-                    <select name="revenue_range">
-                        <option value="">Select...</option>
-                        <option value="startup">Startup/Pre-revenue</option>
-                        <option value="under_1m">Under $1M</option>
-                        <option value="1m_10m">$1M - $10M</option>
-                        <option value="10m_100m">$10M - $100M</option>
-                        <option value="100m_1b">$100M - $1B</option>
-                        <option value="over_1b">Over $1B</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Current audio products/services?</label>
-                    <textarea name="current_products" placeholder="Describe your current audio-related products or services..."></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Licensing budget available? *</label>
-                    <select name="budget_available" required>
-                        <option value="">Select...</option>
-                        <option value="yes_approved">Yes, budget approved ($50K+)</option>
-                        <option value="yes_pending">Yes, pending approval</option>
-                        <option value="exploring">Exploring options</option>
-                        <option value="no_budget">No current budget</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Integration timeline? *</label>
-                    <select name="timeline" required>
-                        <option value="">Select...</option>
-                        <option value="immediate">Immediate (1-3 months)</option>
-                        <option value="short_term">Short term (3-6 months)</option>
-                        <option value="medium_term">Medium term (6-12 months)</option>
-                        <option value="long_term">Long term (12+ months)</option>
-                        <option value="exploring">Just exploring</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Specific integration interest?</label>
-                    <textarea name="integration_interest" placeholder="How would you integrate our Audio Intelligence technology?"></textarea>
-                </div>
-                <input type="hidden" name="market" value="b2b">
-                <button type="submit" class="submit-btn">Request Partnership Discussion</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- API Modal -->
-    <div id="apiModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('api')">&times;</span>
-            <h2>Audio Intelligence API</h2>
-            <form id="apiForm">
-                <div class="form-group">
-                    <label>Name *</label>
-                    <input type="text" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label>Email *</label>
-                    <input type="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label>Company/Project</label>
-                    <input type="text" name="company">
-                </div>
-                <div class="form-group">
-                    <label>Developer Role *</label>
-                    <select name="developer_role" required>
-                        <option value="">Select...</option>
-                        <option value="software_engineer">Software Engineer</option>
-                        <option value="ai_researcher">AI Researcher</option>
-                        <option value="product_manager">Product Manager</option>
-                        <option value="founder">Founder/Entrepreneur</option>
-                        <option value="student">Student/Academic</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Application Type *</label>
-                    <select name="application_type" required>
-                        <option value="">Select...</option>
-                        <option value="accessibility_app">Accessibility Application</option>
-                        <option value="smart_home">Smart Home Device</option>
-                        <option value="voice_interface">Voice Interface/Assistant</option>
-                        <option value="healthcare">Healthcare Application</option>
-                        <option value="education">Educational Tool</option>
-                        <option value="audio_processing">Audio Processing Tool</option>
-                        <option value="robots_sound_input">Robots sound input</option>
-                        <option value="defense_security">Defense / Security</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Expected monthly API calls</label>
-                    <select name="api_volume">
-                        <option value="">Select...</option>
-                        <option value="under_1k">Under 1,000</option>
-                        <option value="1k_10k">1,000 - 10,000</option>
-                        <option value="10k_100k">10,000 - 100,000</option>
-                        <option value="100k_1m">100,000 - 1M</option>
-                        <option value="over_1m">Over 1M</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Budget for API services? *</label>
-                    <select name="api_budget" required>
-                        <option value="">Select...</option>
-                        <option value="free_only">Free tier only</option>
-                        <option value="under_100">Under $100/month</option>
-                        <option value="100_500">$100-$500/month</option>
-                        <option value="500_2000">$500-$2000/month</option>
-                        <option value="over_2000">Over $2000/month</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Describe your use case *</label>
-                    <textarea name="use_case" placeholder="How would you use audio separation/enhancement APIs?" required></textarea>
-                </div>
-                <input type="hidden" name="market" value="api">
-                <button type="submit" class="submit-btn">Get API Beta Access</button>
-            </form>
-        </div>
-    </div>
 
     <script>
         function openModal(market) {
@@ -1110,67 +1103,79 @@
             submitForm(this, 'consumer');
         });
 
-        document.getElementById('b2bForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitForm(this, 'b2b');
-        });
-
-        document.getElementById('apiForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            submitForm(this, 'api');
-        });
-
-        // Audio demo functionality
-        function playScenario(scenario, type) {
-            const statusDiv = document.getElementById(scenario + '-status');
-            const buttons = document.querySelectorAll('.demo-btn');
+        // Demo toggle functionality
+        function toggleDemo(scenario) {
+            const button = document.querySelector(`button[onclick="toggleDemo('${scenario}')"]`);
+            const content = document.getElementById(`${scenario}-content`);
+            const status = content.parentElement.querySelector('.processing-status');
             
-            // Disable all buttons temporarily
-            buttons.forEach(btn => btn.disabled = true);
-            
-            // Show loading state
-            statusDiv.innerHTML = '<div style="color: #4a90e2;">🔄 Processing audio...</div>';
-            
-            setTimeout(() => {
-                let message = '';
+            if (button.textContent === 'Toggle Original') {
+                // Show original audio state
+                button.textContent = 'Enable Sencial';
+                button.style.background = '#28a745';
+                status.textContent = '🔇 Original Audio';
                 
-                if (type === 'original') {
-                    switch(scenario) {
-                        case 'street':
-                            message = '<strong style="color: #dc3545;">Original Street Audio</strong><br>🚗 Car noise: 80dB | 📯 Klaxons: 90dB | 🚨 Sirens: 85dB | 🗣️ Voice: 62dB | 🐦 Birds: 45dB<br><em>Voice completely drowned out by traffic and klaxons</em>';
-                            break;
-                        case 'restaurant_smart':
-                            message = '<strong style="color: #dc3545;">Original Restaurant Audio (Chaos)</strong><br>🎵 Loud music: 75dB | 🍽️ Background noise: 70dB | 👥 Multiple voices: 65dB each | 🗣️ Your table: 60dB<br><em>Complete audio chaos - your companions voices lost among dozens of others</em>';
-                            break;
-                    }
+                // Reset all sliders to original values
+                const sliders = content.querySelectorAll('.volume-slider');
+                const values = content.querySelectorAll('.volume-value');
+                
+                if (scenario === 'street') {
+                    sliders[0].value = 100; values[0].textContent = '100%'; // Traffic
+                    sliders[1].value = 100; values[1].textContent = '100%'; // Klaxons  
+                    sliders[2].value = 100; values[2].textContent = '100%'; // Sirens
+                    sliders[3].value = 100; values[3].textContent = '100%'; // Conversation
+                    sliders[4].value = 100; values[4].textContent = '100%'; // Birds
                 } else {
-                    switch(scenario) {
-                        case 'street':
-                            message = '<strong style="color: #28a745;">Sencial Enhanced Audio</strong><br>🚗 Car noise: CANCELED | 📯 Klaxons: CANCELED | 🚨 Sirens: 10% kept | 🗣️ Voice: +25dB | 🐦 Birds: +5dB<br><em>Voice crystal clear, emergency sirens audible at safe level, birds naturally enhanced</em>';
-                            break;
-                        case 'restaurant_smart':
-                            message = '<strong style="color: #28a745;">Advanced Voice Recognition Mode</strong><br>🎵 Loud music: REMOVED | 🍽️ Background noise: REMOVED | 👥 Unknown voices: FILTERED OUT | ✅ Recognized table voices: +25dB<br><em>Only your dinner companions voices remain - all other sounds eliminated through advanced voice recognition</em>';
-                            break;
-                    }
+                    sliders[0].value = 100; values[0].textContent = '100%'; // Music
+                    sliders[1].value = 100; values[1].textContent = '100%'; // Kitchen
+                    sliders[2].value = 100; values[2].textContent = '100%'; // Other diners
+                    sliders[3].value = 100; values[3].textContent = '100%'; // Your table
+                    sliders[4].value = 100; values[4].textContent = '100%'; // Glasses
                 }
                 
-                statusDiv.innerHTML = message;
+                // Remove enhanced styling
+                values.forEach(v => v.classList.remove('enhanced'));
                 
-                // Re-enable buttons
-                buttons.forEach(btn => btn.disabled = false);
+            } else {
+                // Show Sencial enhanced state
+                button.textContent = 'Toggle Original';
+                button.style.background = '#4a90e2';
+                status.textContent = '🎧 Sencial Active';
                 
-                // Show processing details for enhanced audio
-                if (type === 'enhanced') {
-                    setTimeout(() => {
-                        if (scenario === 'restaurant_smart') {
-                            statusDiv.innerHTML += '<br><div style="margin-top: 10px; padding: 8px; background: #fff9e6; border-radius: 5px; font-size: 12px; border-left: 3px solid #feca57;"><strong>Advanced AI Analysis:</strong><br>✓ 12 unique voices detected<br>✓ 3 voices recognized as table companions<br>✓ Voice patterns learned and saved<br>✓ Background music frequency isolated<br>✓ Real-time audio separation applied<br>✓ Unknown voices filtered to -40dB</div>';
-                        } else {
-                            statusDiv.innerHTML += '<br><div style="margin-top: 10px; padding: 8px; background: #e8f5e8; border-radius: 5px; font-size: 12px;"><strong>AI Processing Complete:</strong><br>✓ Audio sources detected and categorized<br>✓ Background noise separated<br>✓ Target sounds enhanced<br>✓ Real-time adjustment applied</div>';
-                        }
-                    }, 1000);
+                // Set enhanced values
+                const sliders = content.querySelectorAll('.volume-slider');
+                const values = content.querySelectorAll('.volume-value');
+                
+                if (scenario === 'street') {
+                    sliders[0].value = 0; values[0].textContent = '0%';
+                    sliders[1].value = 10; values[1].textContent = '10%';
+                    sliders[2].value = 10; values[2].textContent = '10%';
+                    sliders[3].value = 150; values[3].textContent = '150%'; values[3].classList.add('enhanced');
+                    sliders[4].value = 100; values[4].textContent = '100%';
+                } else {
+                    sliders[0].value = 0; values[0].textContent = '0%';
+                    sliders[1].value = 0; values[1].textContent = '0%';
+                    sliders[2].value = 10; values[2].textContent = '10%';
+                    sliders[3].value = 170; values[3].textContent = '170%'; values[3].classList.add('enhanced');
+                    sliders[4].value = 30; values[4].textContent = '30%';
                 }
-            }, 2000);
+            }
         }
+
+        // Update volume display when sliders change
+        document.addEventListener('input', function(e) {
+            if (e.target.classList.contains('volume-slider')) {
+                const valueDisplay = e.target.parentElement.querySelector('.volume-value');
+                valueDisplay.textContent = e.target.value + '%';
+                
+                // Add enhanced styling for values over 100%
+                if (e.target.value > 100) {
+                    valueDisplay.classList.add('enhanced');
+                } else {
+                    valueDisplay.classList.remove('enhanced');
+                }
+            }
+        });
 
         function submitForm(form, market) {
             const formData = new FormData(form);
