@@ -140,7 +140,7 @@
         .phone-header {
             background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
             color: white;
-            padding: 40px 20px 20px;
+            padding: 15px 8px 5px;
             text-align: center;
             position: relative;
         }
@@ -245,6 +245,16 @@
             cursor: pointer;
         }
 
+        .volume-slider:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .volume-slider:disabled::-webkit-slider-thumb {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
         .volume-value {
             font-size: 12px;
             font-weight: 600;
@@ -264,6 +274,12 @@
             margin-bottom: 10px;
         }
 
+        .demo-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
         .demo-toggle {
             background: #4a90e2;
             color: white;
@@ -273,6 +289,7 @@
             cursor: pointer;
             font-size: 14px;
             font-weight: 600;
+            flex: 1;
         }
 
         .cancelled {
@@ -679,7 +696,22 @@
                                 <div class="scene-title">Busy Street</div>
                             </div>
                             <div class="phone-content" id="street-content">
-                                <div class="sound-source">
+                                <!-- Original mixed audio source (shown when Sencial is disabled) -->
+                                <div class="sound-source original-audio" style="display: flex;">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🔊</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Original Audio</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="100" disabled>
+                                        <div class="volume-value">100%</div>
+                                    </div>
+                                </div>
+
+                                <!-- Individual sound sources (shown when Sencial is active) -->
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🚗</div>
                                         <div class="sound-details">
@@ -688,54 +720,82 @@
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="100" value="0">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0" data-audio="traffic">
                                         <div class="volume-value">0%</div>
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
-                                        <div class="sound-emoji">📯</div>
+                                        <div class="sound-emoji">🔨</div>
                                         <div class="sound-details">
-                                            <div class="sound-name">Klaxons</div>
+                                            <div class="sound-name">Jackhammer</div>
+                                            <div class="sound-level">95dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0" data-audio="jackhammer">
+                                        <div class="volume-value">0%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source sencial-audio" style="display: none;">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🚨</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Ambulance</div>
                                             <div class="sound-level">90dB detected</div>
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="100" value="10">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="10" data-audio="ambulance">
                                         <div class="volume-value">10%</div>
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
-                                        <div class="sound-emoji">🚨</div>
+                                        <div class="sound-emoji">🚒</div>
                                         <div class="sound-details">
-                                            <div class="sound-name">Sirens</div>
+                                            <div class="sound-name">Fire Truck</div>
+                                            <div class="sound-level">92dB detected</div>
+                                        </div>
+                                    </div>
+                                    <div class="volume-control">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="8" data-audio="fire-truck">
+                                        <div class="volume-value">8%</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="sound-source sencial-audio" style="display: none;">
+                                    <div class="sound-info">
+                                        <div class="sound-emoji">🏍️</div>
+                                        <div class="sound-details">
+                                            <div class="sound-name">Motorcycle</div>
                                             <div class="sound-level">85dB detected</div>
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="100" value="10">
-                                        <div class="volume-value">10%</div>
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0" data-audio="motorcycle">
+                                        <div class="volume-value">0%</div>
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🗣️</div>
                                         <div class="sound-details">
-                                            <div class="sound-name">Conversation</div>
-                                            <div class="sound-level">62dB detected</div>
+                                            <div class="sound-name">Voices</div>
+                                            <div class="sound-level">68dB detected</div>
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="200" value="150">
+                                        <input type="range" class="volume-slider" min="0" max="200" value="150" data-audio="voices">
                                         <div class="volume-value enhanced">150%</div>
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🐦</div>
                                         <div class="sound-details">
@@ -744,14 +804,17 @@
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="200" value="100">
+                                        <input type="range" class="volume-slider" min="0" max="200" value="100" data-audio="birds">
                                         <div class="volume-value">100%</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="phone-footer">
-                                <div class="processing-status">🎧 Sencial Active</div>
-                                <button class="demo-toggle" onclick="toggleDemo('street')">Toggle Original</button>
+                                <div class="processing-status">🔇 Original Audio</div>
+                                <div class="demo-buttons">
+                                    <button class="demo-toggle" onclick="toggleDemo('street')">Enable Sencial</button>
+                                    <button class="demo-toggle" onclick="toggleAudio()" id="audio-control">▶️ Play Demo</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -766,7 +829,7 @@
                                 <div class="scene-title">Restaurant</div>
                             </div>
                             <div class="phone-content" id="restaurant-content">
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🎵</div>
                                         <div class="sound-details">
@@ -780,7 +843,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🍽️</div>
                                         <div class="sound-details">
@@ -794,7 +857,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">👥</div>
                                         <div class="sound-details">
@@ -808,7 +871,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🗣️</div>
                                         <div class="sound-details">
@@ -822,7 +885,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="sound-source">
+                                <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
                                         <div class="sound-emoji">🍷</div>
                                         <div class="sound-details">
@@ -1078,7 +1141,92 @@
     </div>
 
 
+    <!-- Audio Elements for Street Demo -->
+    <audio id="audio-street-dialogue" src="street dialogue/street dialogue.m4a" loop preload="auto"></audio>
+    <audio id="audio-traffic" src="street dialogue/traffic.m4a" loop preload="auto"></audio>
+    <audio id="audio-jackhammer" src="street dialogue/jackhammer.m4a" loop preload="auto"></audio>
+    <audio id="audio-ambulance" src="street dialogue/ambulance.m4a" loop preload="auto"></audio>
+    <audio id="audio-fire-truck" src="street dialogue/fire truck.m4a" loop preload="auto"></audio>
+    <audio id="audio-motorcycle" src="street dialogue/motorcycle.m4a" loop preload="auto"></audio>
+    <audio id="audio-voices" src="street dialogue/voices.m4a" loop preload="auto"></audio>
+    <audio id="audio-birds" src="street dialogue/birds.m4a" loop preload="auto"></audio>
+
     <script>
+        // Audio demo variables
+        let audioPlaying = false;
+        let originalAudio = null;
+        let separateAudios = {};
+        let isSencialMode = false;
+
+        // Initialize audio elements
+        document.addEventListener('DOMContentLoaded', function() {
+            originalAudio = document.getElementById('audio-street-dialogue');
+            separateAudios = {
+                'traffic': document.getElementById('audio-traffic'),
+                'jackhammer': document.getElementById('audio-jackhammer'),
+                'ambulance': document.getElementById('audio-ambulance'),
+                'fire-truck': document.getElementById('audio-fire-truck'),
+                'motorcycle': document.getElementById('audio-motorcycle'),
+                'voices': document.getElementById('audio-voices'),
+                'birds': document.getElementById('audio-birds')
+            };
+
+            // Set initial volumes based on sliders
+            updateAudioVolumes();
+
+            // Add event listeners for all volume sliders
+            document.querySelectorAll('.volume-slider[data-audio]').forEach(slider => {
+                slider.addEventListener('input', function() {
+                    updateAudioVolumes();
+                });
+            });
+        });
+
+        function toggleAudio() {
+            const button = document.getElementById('audio-control');
+            
+            if (!audioPlaying) {
+                // Start playing
+                if (isSencialMode) {
+                    // Play separate audio tracks
+                    Object.values(separateAudios).forEach(audio => {
+                        if (audio) audio.play().catch(e => console.log('Audio play failed:', e));
+                    });
+                } else {
+                    // Play original mixed audio
+                    originalAudio.play().catch(e => console.log('Audio play failed:', e));
+                }
+                
+                button.textContent = '⏸️ Pause Demo';
+                audioPlaying = true;
+            } else {
+                // Stop playing
+                if (isSencialMode) {
+                    Object.values(separateAudios).forEach(audio => {
+                        if (audio) audio.pause();
+                    });
+                } else {
+                    originalAudio.pause();
+                }
+                
+                button.textContent = '▶️ Play Demo';
+                audioPlaying = false;
+            }
+        }
+
+        function updateAudioVolumes() {
+            if (!isSencialMode) return;
+            
+            document.querySelectorAll('.volume-slider[data-audio]').forEach(slider => {
+                const audioType = slider.getAttribute('data-audio');
+                const volume = slider.value / 100;
+                
+                if (separateAudios[audioType]) {
+                    separateAudios[audioType].volume = Math.min(volume, 1.0);
+                }
+            });
+        }
+
         function openModal(market) {
             document.getElementById(market + 'Modal').style.display = 'block';
             document.body.style.overflow = 'hidden';
@@ -1109,55 +1257,60 @@
             const content = document.getElementById(`${scenario}-content`);
             const status = content.parentElement.querySelector('.processing-status');
             
-            if (button.textContent === 'Toggle Original') {
-                // Show original audio state
+            if (button.textContent === 'Enable Sencial') {
+                // Switch to Sencial enhanced mode
+                button.textContent = 'Disable Sencial';
+                button.style.background = '#4a90e2';
+                status.textContent = '🎧 Sencial Active';
+                isSencialMode = true;
+                
+                // Hide original audio, show individual sources
+                content.querySelector('.original-audio').style.display = 'none';
+                content.querySelectorAll('.sencial-audio').forEach(el => el.style.display = 'flex');
+                
+                // Stop original audio and play separate tracks
+                if (audioPlaying) {
+                    originalAudio.pause();
+                    Object.values(separateAudios).forEach(audio => {
+                        if (audio) audio.play().catch(e => console.log('Audio play failed:', e));
+                    });
+                }
+                
+                // Set enhanced values for Sencial audio sources only
+                const sencialSources = content.querySelectorAll('.sencial-audio .volume-slider');
+                const sencialValues = content.querySelectorAll('.sencial-audio .volume-value');
+                
+                if (scenario === 'street') {
+                    sencialSources[0].value = 0; sencialValues[0].textContent = '0%';    // Traffic
+                    sencialSources[1].value = 0; sencialValues[1].textContent = '0%';    // Jackhammer
+                    sencialSources[2].value = 10; sencialValues[2].textContent = '10%';  // Ambulance
+                    sencialSources[3].value = 8; sencialValues[3].textContent = '8%';    // Fire truck
+                    sencialSources[4].value = 0; sencialValues[4].textContent = '0%';    // Motorcycle
+                    sencialSources[5].value = 150; sencialValues[5].textContent = '150%'; sencialValues[5].classList.add('enhanced'); // Voices
+                    sencialSources[6].value = 100; sencialValues[6].textContent = '100%'; // Birds
+                }
+                
+                // Enable sliders and update volumes
+                sencialSources.forEach(s => s.disabled = false);
+                updateAudioVolumes();
+                
+            } else {
+                // Switch to original audio mode
                 button.textContent = 'Enable Sencial';
                 button.style.background = '#28a745';
                 status.textContent = '🔇 Original Audio';
+                isSencialMode = false;
                 
-                // Reset all sliders to original values
-                const sliders = content.querySelectorAll('.volume-slider');
-                const values = content.querySelectorAll('.volume-value');
+                // Show original audio, hide individual sources
+                content.querySelector('.original-audio').style.display = 'flex';
+                content.querySelectorAll('.sencial-audio').forEach(el => el.style.display = 'none');
                 
-                if (scenario === 'street') {
-                    sliders[0].value = 100; values[0].textContent = '100%'; // Traffic
-                    sliders[1].value = 100; values[1].textContent = '100%'; // Klaxons  
-                    sliders[2].value = 100; values[2].textContent = '100%'; // Sirens
-                    sliders[3].value = 100; values[3].textContent = '100%'; // Conversation
-                    sliders[4].value = 100; values[4].textContent = '100%'; // Birds
-                } else {
-                    sliders[0].value = 100; values[0].textContent = '100%'; // Music
-                    sliders[1].value = 100; values[1].textContent = '100%'; // Kitchen
-                    sliders[2].value = 100; values[2].textContent = '100%'; // Other diners
-                    sliders[3].value = 100; values[3].textContent = '100%'; // Your table
-                    sliders[4].value = 100; values[4].textContent = '100%'; // Glasses
-                }
-                
-                // Remove enhanced styling
-                values.forEach(v => v.classList.remove('enhanced'));
-                
-            } else {
-                // Show Sencial enhanced state
-                button.textContent = 'Toggle Original';
-                button.style.background = '#4a90e2';
-                status.textContent = '🎧 Sencial Active';
-                
-                // Set enhanced values
-                const sliders = content.querySelectorAll('.volume-slider');
-                const values = content.querySelectorAll('.volume-value');
-                
-                if (scenario === 'street') {
-                    sliders[0].value = 0; values[0].textContent = '0%';
-                    sliders[1].value = 10; values[1].textContent = '10%';
-                    sliders[2].value = 10; values[2].textContent = '10%';
-                    sliders[3].value = 150; values[3].textContent = '150%'; values[3].classList.add('enhanced');
-                    sliders[4].value = 100; values[4].textContent = '100%';
-                } else {
-                    sliders[0].value = 0; values[0].textContent = '0%';
-                    sliders[1].value = 0; values[1].textContent = '0%';
-                    sliders[2].value = 10; values[2].textContent = '10%';
-                    sliders[3].value = 170; values[3].textContent = '170%'; values[3].classList.add('enhanced');
-                    sliders[4].value = 30; values[4].textContent = '30%';
+                // Stop separate audios and play original
+                if (audioPlaying) {
+                    Object.values(separateAudios).forEach(audio => {
+                        if (audio) audio.pause();
+                    });
+                    originalAudio.play().catch(e => console.log('Audio play failed:', e));
                 }
             }
         }
