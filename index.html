@@ -1135,6 +1135,8 @@
                     </select>
                 </div>
                 <input type="hidden" name="market" value="consumer">
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="_gotcha" style="display: none;">
                 <button type="submit" class="submit-btn">Join Beta Waitlist</button>
             </form>
         </div>
@@ -1330,28 +1332,81 @@
             }
         });
 
+        // Formspree configuration
+        const FORMSPREE_CONFIG = {
+            endpoint: 'https://formspree.io/f/xovngbrb'
+        };
+
         function submitForm(form, market) {
-            const formData = new FormData(form);
             const submitButton = form.querySelector('.submit-btn');
             
             // Show loading state
+            const originalText = submitButton.textContent;
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
             
-            // Simulate form submission
-            setTimeout(() => {
-                submitButton.textContent = 'Submitted!';
+            // Prepare form data for Formspree
+            const formData = new FormData(form);
+            
+            // Add metadata to form data
+            formData.append('_subject', `[Sencial Consumer] New Beta Waitlist Signup`);
+            formData.append('_replyto', formData.get('email')); // Use submitter's email as reply-to
+            formData.append('_format', 'plain'); // Plain text format
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('market_type', market);
+            formData.append('page_url', window.location.href);
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('form_source', 'Sencial Consumer Website'); // Legitimate source indicator
+            
+            // Send to Formspree
+            fetch(FORMSPREE_CONFIG.endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Formspree response status:', response.status);
+                console.log('Formspree endpoint:', FORMSPREE_CONFIG.endpoint);
+                
+                if (response.ok) {
+                    return response.json().catch(() => ({})); // Handle both JSON and non-JSON responses
+                } else {
+                    throw new Error(`Form submission failed with status: ${response.status}`);
+                }
+            })
+            .then(data => {
+                console.log('Formspree response data:', data);
+                
+                // Success state
+                submitButton.textContent = 'Successfully Joined Beta!';
                 submitButton.style.background = '#28a745';
                 
                 setTimeout(() => {
                     closeModal(market);
-                    submitButton.textContent = submitButton.textContent.includes('Beta') ? 'Join Beta Waitlist' : 
-                                              submitButton.textContent.includes('Partnership') ? 'Request Partnership Discussion' : 'Get API Beta Access';
+                    submitButton.textContent = originalText;
                     submitButton.style.background = '#4a90e2';
                     submitButton.disabled = false;
                     form.reset();
                 }, 2000);
-            }, 1500);
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                console.error('Formspree endpoint:', FORMSPREE_CONFIG.endpoint);
+                
+                // Show error state
+                submitButton.textContent = 'Error - Try Again';
+                submitButton.style.background = '#dc3545';
+                
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = '#4a90e2';
+                    submitButton.disabled = false;
+                }, 3000);
+                
+                alert(`There was an error submitting the form: ${error.message}. Please try again or contact support.`);
+            });
         }
 
         // Smooth scrolling for demo link
