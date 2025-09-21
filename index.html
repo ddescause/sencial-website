@@ -1256,6 +1256,18 @@
         let restaurantSeparateAudios = {};
         let isRestaurantSencialMode = false;
 
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext || null;
+        let audioContext = null;
+        let streetGraphInitialized = false;
+        let restaurantGraphInitialized = false;
+        const streetGainNodes = {};
+        const restaurantGainNodes = {};
+        const streetMediaSources = {};
+        const restaurantMediaSources = {};
+
+        let streetPlayButton = null;
+        let restaurantPlayButton = null;
+
         // Initialize audio elements
         document.addEventListener('DOMContentLoaded', function() {
             // Street demo audio elements
@@ -1281,6 +1293,31 @@
                 'woman2-voice': document.getElementById('audio-woman2-voice')
             };
 
+            streetPlayButton = document.getElementById('audio-control');
+            restaurantPlayButton = document.getElementById('restaurant-audio-control');
+
+            if (originalAudio) {
+                originalAudio.loop = false;
+                originalAudio.addEventListener('ended', handleStreetPlaybackEnded);
+            }
+
+            Object.values(separateAudios).forEach(audio => {
+                if (!audio) return;
+                audio.loop = false;
+                audio.addEventListener('ended', handleStreetPlaybackEnded);
+            });
+
+            if (restaurantOriginalAudio) {
+                restaurantOriginalAudio.loop = false;
+                restaurantOriginalAudio.addEventListener('ended', handleRestaurantPlaybackEnded);
+            }
+
+            Object.values(restaurantSeparateAudios).forEach(audio => {
+                if (!audio) return;
+                audio.loop = false;
+                audio.addEventListener('ended', handleRestaurantPlaybackEnded);
+            });
+
             // Set initial volumes based on sliders
             updateAudioVolumes();
             updateRestaurantAudioVolumes();
@@ -1294,10 +1331,80 @@
             });
         });
 
-        function toggleAudio() {
+        function ensureAudioContext() {
+            if (!AudioContextClass) {
+                return Promise.resolve();
+            }
+
+            if (!audioContext) {
+                try {
+                    audioContext = new AudioContextClass();
+                } catch (error) {
+                    console.warn('AudioContext initialization failed:', error);
+                    audioContext = null;
+                    return Promise.resolve();
+                }
+            }
+
+            if (audioContext.state === 'suspended') {
+                return audioContext.resume().catch(error => {
+                    console.warn('AudioContext resume failed:', error);
+                });
+            }
+
+            return Promise.resolve();
+        }
+
+        function initializeStreetAudioGraph() {
+            if (!audioContext || streetGraphInitialized) return;
+
+            Object.entries(separateAudios).forEach(([key, audioEl]) => {
+                if (!audioEl) return;
+
+                const source = audioContext.createMediaElementSource(audioEl);
+                const gainNode = audioContext.createGain();
+
+                const slider = document.querySelector(`#street-content .volume-slider[data-audio="${key}"]`);
+                const sliderValue = slider ? parseInt(slider.value, 10) || 0 : 100;
+                gainNode.gain.value = sliderValue / 100;
+
+                source.connect(gainNode).connect(audioContext.destination);
+                streetMediaSources[key] = source;
+                streetGainNodes[key] = gainNode;
+            });
+
+            streetGraphInitialized = true;
+        }
+
+        function initializeRestaurantAudioGraph() {
+            if (!audioContext || restaurantGraphInitialized) return;
+
+            Object.entries(restaurantSeparateAudios).forEach(([key, audioEl]) => {
+                if (!audioEl) return;
+
+                const source = audioContext.createMediaElementSource(audioEl);
+                const gainNode = audioContext.createGain();
+
+                const slider = document.querySelector(`#restaurant-content .volume-slider[data-audio="${key}"]`);
+                const sliderValue = slider ? parseInt(slider.value, 10) || 0 : 100;
+                gainNode.gain.value = sliderValue / 100;
+
+                source.connect(gainNode).connect(audioContext.destination);
+                restaurantMediaSources[key] = source;
+                restaurantGainNodes[key] = gainNode;
+            });
+
+            restaurantGraphInitialized = true;
+        }
+
+        async function toggleAudio() {
             const button = document.getElementById('audio-control');
-            
+
             if (!audioPlaying) {
+                await ensureAudioContext();
+                initializeStreetAudioGraph();
+                updateAudioVolumes();
+
                 // Start playing
                 if (isSencialMode) {
                     // Play separate audio tracks
@@ -1326,15 +1433,78 @@
             }
         }
 
+        function resetStreetPlaybackPositions() {
+            if (originalAudio) {
+                originalAudio.currentTime = 0;
+            }
+
+            Object.values(separateAudios).forEach(audio => {
+                if (audio) audio.currentTime = 0;
+            });
+        }
+
+        function handleStreetPlaybackEnded() {
+            if (audioPlaying) {
+                audioPlaying = false;
+            }
+
+            resetStreetPlaybackPositions();
+
+            if (streetPlayButton) {
+                streetPlayButton.textContent = '▶️ Play Demo';
+            }
+
+            if (isSencialMode) {
+                Object.values(separateAudios).forEach(audio => {
+                    if (audio && !audio.paused) audio.pause();
+                });
+            } else if (originalAudio && !originalAudio.paused) {
+                originalAudio.pause();
+            }
+        }
+
+        function resetRestaurantPlaybackPositions() {
+            if (restaurantOriginalAudio) {
+                restaurantOriginalAudio.currentTime = 0;
+            }
+
+            Object.values(restaurantSeparateAudios).forEach(audio => {
+                if (audio) audio.currentTime = 0;
+            });
+        }
+
+        function handleRestaurantPlaybackEnded() {
+            if (restaurantAudioPlaying) {
+                restaurantAudioPlaying = false;
+            }
+
+            resetRestaurantPlaybackPositions();
+
+            if (restaurantPlayButton) {
+                restaurantPlayButton.textContent = '▶️ Play Demo';
+            }
+
+            if (isRestaurantSencialMode) {
+                Object.values(restaurantSeparateAudios).forEach(audio => {
+                    if (audio && !audio.paused) audio.pause();
+                });
+            } else if (restaurantOriginalAudio && !restaurantOriginalAudio.paused) {
+                restaurantOriginalAudio.pause();
+            }
+        }
+
         function updateAudioVolumes() {
             if (!isSencialMode) return;
             
             document.querySelectorAll('#street-content .volume-slider[data-audio]').forEach(slider => {
                 const audioType = slider.getAttribute('data-audio');
-                const volume = slider.value / 100;
-                
-                if (separateAudios[audioType]) {
-                    separateAudios[audioType].volume = Math.min(volume, 1.0);
+                const sliderValue = parseInt(slider.value, 10);
+                const volume = isNaN(sliderValue) ? 0 : sliderValue / 100;
+
+                if (streetGraphInitialized && streetGainNodes[audioType]) {
+                    streetGainNodes[audioType].gain.value = Math.max(volume, 0);
+                } else if (separateAudios[audioType]) {
+                    separateAudios[audioType].volume = Math.min(Math.max(volume, 0), 1.0);
                 }
             });
         }
@@ -1344,18 +1514,25 @@
             
             document.querySelectorAll('#restaurant-content .volume-slider[data-audio]').forEach(slider => {
                 const audioType = slider.getAttribute('data-audio');
-                const volume = slider.value / 100;
-                
-                if (restaurantSeparateAudios[audioType]) {
-                    restaurantSeparateAudios[audioType].volume = Math.min(volume, 1.0);
+                const sliderValue = parseInt(slider.value, 10);
+                const volume = isNaN(sliderValue) ? 0 : sliderValue / 100;
+
+                if (restaurantGraphInitialized && restaurantGainNodes[audioType]) {
+                    restaurantGainNodes[audioType].gain.value = Math.max(volume, 0);
+                } else if (restaurantSeparateAudios[audioType]) {
+                    restaurantSeparateAudios[audioType].volume = Math.min(Math.max(volume, 0), 1.0);
                 }
             });
         }
 
-        function toggleRestaurantAudio() {
+        async function toggleRestaurantAudio() {
             const button = document.getElementById('restaurant-audio-control');
             
             if (!restaurantAudioPlaying) {
+                await ensureAudioContext();
+                initializeRestaurantAudioGraph();
+                updateRestaurantAudioVolumes();
+
                 // Start playing
                 if (isRestaurantSencialMode) {
                     // Play separate audio tracks
@@ -1409,7 +1586,7 @@
         });
 
         // Demo toggle functionality
-        function toggleDemo(scenario) {
+        async function toggleDemo(scenario) {
             const button = document.querySelector(`button[onclick="toggleDemo('${scenario}')"]`);
             const content = document.getElementById(`${scenario}-content`);
             const status = content.parentElement.querySelector('.processing-status');
@@ -1421,6 +1598,9 @@
                     button.style.background = '#4a90e2';
                     status.textContent = '🎧 Sencial Active';
                     isSencialMode = true;
+
+                    await ensureAudioContext();
+                    initializeStreetAudioGraph();
                     
                     // Hide original audio, show individual sources
                     content.querySelector('.original-audio').style.display = 'none';
@@ -1476,6 +1656,9 @@
                     button.style.background = '#4a90e2';
                     status.textContent = '🎧 Sencial Active';
                     isRestaurantSencialMode = true;
+
+                    await ensureAudioContext();
+                    initializeRestaurantAudioGraph();
                     
                     // Hide original audio, show individual sources
                     content.querySelector('.original-audio').style.display = 'none';
