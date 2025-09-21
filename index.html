@@ -932,8 +932,8 @@
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="200" value="110" data-audio="alice-voice">
-                                        <div class="volume-value enhanced">110%</div>
+                                        <input type="range" class="volume-slider" min="0" max="200" value="50" data-audio="alice-voice">
+                                        <div class="volume-value">50%</div>
                                     </div>
                                 </div>
                                 
@@ -946,8 +946,8 @@
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="200" value="180" data-audio="john-voice">
-                                        <div class="volume-value enhanced">180%</div>
+                                        <input type="range" class="volume-slider" min="0" max="200" value="200" data-audio="john-voice">
+                                        <div class="volume-value enhanced">200%</div>
                                     </div>
                                 </div>
                                 
@@ -1495,8 +1495,8 @@
                     
                     sencialSources[0].value = 25; sencialValues[0].textContent = '25%';   // Restaurant Music (keep low)
                     sencialSources[1].value = 0; sencialValues[1].textContent = '0%'; sencialValues[1].classList.add('cancelled'); // Background Noise (remove)
-                    sencialSources[2].value = 110; sencialValues[2].textContent = '110%'; sencialValues[2].classList.add('enhanced'); // Alice (me - slightly enhanced)
-                    sencialSources[3].value = 180; sencialValues[3].textContent = '180%'; sencialValues[3].classList.add('enhanced'); // John (amplify most)
+                    sencialSources[2].value = 50; sencialValues[2].textContent = '50%'; sencialValues[2].classList.remove('enhanced'); // Alice (me - reduced)
+                    sencialSources[3].value = 200; sencialValues[3].textContent = '200%'; sencialValues[3].classList.add('enhanced'); // John (maximum amplify)
                     sencialSources[4].value = 0; sencialValues[4].textContent = '0%'; sencialValues[4].classList.add('cancelled'); // Loud Woman 1 (remove)
                     sencialSources[5].value = 0; sencialValues[5].textContent = '0%'; sencialValues[5].classList.add('cancelled'); // Loud Woman 2 (remove)
                     
