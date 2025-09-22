@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sencial API - Audio Intelligence Platform for Developers</title>
+    <meta name="description" content="Audio intelligence API: sound separation, scene detection, voice isolation, multi-speaker diarization, and voice embeddings.">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --bg:#0b0c10; 
+            --fg:#f6f7fb; 
+            --muted:#a7adba; 
+            --brand:#4ac6ff; 
+            --accent:#89ffc3; 
+            --card:#131720;
+            --border:#212838;
+            --code-bg:#0f1218;
+            --code-border:#1f2633;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            background: var(--bg);
+            color: var(--fg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .wrap {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0 auto 0.3em;
+            line-height: 1.1;
+            max-width: 900px;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin: 0 auto 24px;
+            font-weight: 600;
+            max-width: 600px;
+        }
+
+        .hero .description {
+            font-size: 1.2rem;
+            color: var(--muted);
+            margin: 0 auto 40px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--card);
+            color: var(--fg);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+        }
+        
+        .btn.primary {
+            background: linear-gradient(135deg, var(--brand), #2ea0ff);
+            border: 0;
+            box-shadow: 0 10px 24px rgba(74, 172, 255, 0.25);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid var(--brand);
+            color: var(--brand);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn.primary:hover {
+            box-shadow: 0 15px 30px rgba(74, 172, 255, 0.4);
+        }
+        
+        .btn.secondary:hover {
+            background: var(--brand);
+            color: var(--bg);
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 24px;
+            margin: 16px 0;
+        }
+        
+        .demo {
+            padding: 60px 0;
+        }
+        
+        .code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            background: var(--code-bg);
+            border: 1px solid var(--code-border);
+            border-radius: 10px;
+            padding: 16px;
+            overflow: auto;
+            color: var(--fg);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .api-demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            align-items: start;
+        }
+
+        .demo h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            color: var(--fg);
+        }
+
+        .demo-container {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .demo-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .phone-mockup {
+            background: #000;
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin: 0 auto;
+            width: 340px;
+            height: 700px;
+        }
+
+        .phone-screen {
+            background: white;
+            border-radius: 25px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .phone-header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 15px 8px 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 20px;
+            background: #000;
+            border-radius: 15px;
+        }
+
+        .scene-detected {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .scene-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .scene-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .phone-content {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .sound-source {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .sound-source:last-child {
+            border-bottom: none;
+        }
+
+        .sound-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .sound-emoji {
+            font-size: 20px;
+            width: 35px;
+            text-align: center;
+        }
+
+        .sound-details {
+            flex: 1;
+        }
+
+        .sound-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 2px;
+        }
+
+        .sound-level {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+        }
+
+        .volume-slider {
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+            background: #e0e0e0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #4a90e2;
+            cursor: pointer;
+        }
+
+        .volume-slider:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .volume-slider:disabled::-webkit-slider-thumb {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .volume-value {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a90e2;
+            min-width: 35px;
+        }
+
+        .phone-footer {
+            padding: 20px;
+            background: #f8f9fa;
+            text-align: center;
+        }
+
+        .processing-status {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .demo-toggle {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            flex: 1;
+        }
+
+        .cancelled {
+            opacity: 0.3;
+        }
+
+        .enhanced {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin: 32px 0;
+        }
+        
+        .problem {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .problem h2 {
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            color: var(--fg);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--brand);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-top: 10px;
+        }
+
+        .solution {
+            padding: 60px 0;
+        }
+
+        .solution h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 48px;
+            color: var(--fg);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 32px 20px;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--bg);
+        }
+
+        .feature h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--fg);
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .comparison {
+            padding: 60px 0;
+        }
+
+        .comparison h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 48px;
+            color: var(--fg);
+        }
+
+        .comparison-table {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1.3fr;
+            gap: 15px;
+            padding: 8px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-row:first-child {
+            background: linear-gradient(135deg, var(--brand), #2ea0ff);
+            color: var(--bg);
+            font-weight: 600;
+        }
+
+        .comparison-row:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .checkmark {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .xmark {
+            color: #dc3545;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .markets {
+            padding: 60px 0;
+        }
+
+        .markets h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 48px;
+            color: var(--fg);
+        }
+        
+        /* Header styles for API website */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .logo {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--fg);
+        }
+        
+        .logo-mark {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+        }
+        
+        nav a {
+            margin-left: 24px;
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--brand);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--muted);
+            transition: color 0.3s ease;
+        }
+        
+        .close:hover {
+            color: var(--fg);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--fg);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--brand);
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #888;
+        }
+
+        .form-group input::selection,
+        .form-group select::selection,
+        .form-group textarea::selection {
+            background: var(--brand);
+            color: var(--bg);
+        }
+
+        .form-group select option {
+            background: var(--card);
+            color: var(--fg);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--brand), #2ea0ff);
+            color: var(--bg);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            box-shadow: 0 10px 20px rgba(74, 172, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .market-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .market-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
+        }
+
+        .market-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+            border-color: var(--brand);
+        }
+
+        .market-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--fg);
+        }
+
+        .market-card p {
+            color: var(--muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .market-card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .market-card-bottom {
+            margin-top: auto;
+        }
+
+        .pricing-info {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .market-button {
+            background: linear-gradient(135deg, var(--brand), #2ea0ff);
+            color: var(--bg);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .market-button:hover {
+            box-shadow: 0 10px 20px rgba(74, 172, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 1px solid #ddd;
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content h2 {
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .modal-content p {
+            color: #666;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .close:hover {
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .submit-btn {
+            background: #4a90e2;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #357abd;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .demo-container {
+                padding: 24px 16px;
+                margin: 0 8px;
+            }
+            
+            .demo-scenarios {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-row {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            /* Fix pricing grid on mobile */
+            [style*="grid-template-columns: repeat(3, 1fr)"] {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            
+            .comparison-row:first-child {
+                display: none;
+            }
+        }
+        
+        /* Scene button styles */
+        .scene-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(74, 198, 255, 0.3);
+        }
+        
+        .scene-btn:not(.active):hover {
+            border-color: var(--brand) !important;
+            color: var(--brand) !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <div class="logo-mark"></div>
+                Sencial API
+            </div>
+            <nav>
+                <a href="#demo">Demo</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#docs">Docs</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Audio Intelligence API for Developers</h1>
+                <div class="tagline">Sound separation • Scene detection • Voice isolation</div>
+                <p class="description">RESTful API endpoints for <strong>sound separation</strong>, <strong>scene detection</strong>, <strong>voice/sound isolation</strong>, <strong>multi-speaker diarization</strong>, and <strong>voice embeddings</strong>.</p>
+                
+                <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 50px;">
+                    <a href="#" class="btn primary" onclick="openModal('starter')" style="font-size: 1.1rem; padding: 16px 32px;">Get API Key</a>
+                    <a href="#demo" class="btn secondary" style="font-size: 1.1rem; padding: 16px 32px;">Try Demo</a>
+                </div>
+                
+                <!-- Code Example -->
+                <div style="max-width: 600px; margin: 0 auto;">
+                    <div style="text-align: left; margin-bottom: 12px;">
+                        <span style="color: var(--muted); font-size: 14px;">Quick Example:</span>
+                    </div>
+                    <div class="code" style="text-align: left; font-size: 13px; line-height: 1.6;">
+curl -X POST https://api.sencial.ai/v1/separate \\<br>
+&nbsp;&nbsp;-H "Authorization: Bearer &lt;API_KEY&gt;" \\<br>
+&nbsp;&nbsp;-F "file=@audio.wav" \\<br>
+&nbsp;&nbsp;-F "stems=vocals,drums,bass,other"
+                    </div>
+                </div>
+                
+                <!-- What you can build -->
+                <div style="margin-top: 60px;">
+                    <h3 style="color: var(--fg); margin-bottom: 24px; font-size: 1.3rem;">What you can build</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; max-width: 900px; margin: 0 auto; text-align: left;">
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">🎧</div>
+                            <strong style="color: var(--fg);">Hearing Apps</strong><br>
+                            <span style="color: var(--muted); font-size: 14px;">Isolate voices from noise</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">🎵</div>
+                            <strong style="color: var(--fg);">Music Tools</strong><br>
+                            <span style="color: var(--muted); font-size: 14px;">Stem separation and remixing</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">💼</div>
+                            <strong style="color: var(--fg);">Meeting Assistants</strong><br>
+                            <span style="color: var(--muted); font-size: 14px;">Speaker diarization</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; margin-bottom: 8px;">🎯</div>
+                            <strong style="color: var(--fg);">Scene Understanding</strong><br>
+                            <span style="color: var(--muted); font-size: 14px;">Real-time audio analysis</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section id="features">
+            <div class="features-grid">
+                <div class="card">
+                    <h3 style="color: var(--fg);">🔀 Audio Separation</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/separate — Split audio into 2, 4, or 6 stems with lossless export</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">🎯 Scene Detection</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/scene-detect — Classify environments in real-time</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">🔊 Sound Isolation</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/isolate — Focus or suppress specific sound sources</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">🗣️ Voice Isolation</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/voice-isolate — Enhance voices, reduce background noise</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">👥 Speaker Diarization</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/diarize — Separate and label multiple speakers</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">🎵 Voice Embeddings</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/voice-embed — 512-D vectors for voice matching and clustering</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">⚡ Real-time Processing</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/rt — WebSocket endpoints for low-latency streaming</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: var(--fg);">📊 Jobs API</h3>
+                    <p class="sub" style="color: var(--muted);">/v1/jobs/{id} — Poll async tasks or receive webhook notifications</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section class="demo" id="demo">
+            <div class="container">
+                <h2>Interactive API Demo</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: var(--muted); margin-bottom: 32px;">Experience our audio separation technology - the same processing power behind our API</p>
+                
+                <!-- Mobile Warning -->
+                <div id="mobile-warning" style="background: rgba(255, 193, 7, 0.1); border: 1px solid rgba(255, 193, 7, 0.3); padding: 16px; border-radius: 8px; margin-bottom: 24px; display: none;">
+                    <p style="color: var(--fg); margin: 0; font-size: 0.9rem;"><strong>📱 Mobile Note:</strong> For the best audio demo experience on mobile devices, please use <strong>headphones or earbuds</strong>. iOS Safari has limitations with multiple audio streams.</p>
+                </div>
+            
+            <div class="demo-container">
+                <!-- API Workflow Demo -->
+                <div class="api-demo-grid">
+                    
+                    <!-- Step 1: Scene Detection API -->
+                    <div class="card">
+                        <h3 style="margin-top: 0; color: var(--fg); display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--brand); color: var(--bg); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;">1</span>
+                            Scene Detection API
+                        </h3>
+                        
+                        <!-- API Request -->
+                        <div style="margin: 16px 0;">
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">POST /v1/scene-detect</div>
+                            <div class="code" style="font-size: 12px; margin-bottom: 16px;">
+curl -X POST https://api.sencial.ai/v1/scene-detect \\<br>
+&nbsp;&nbsp;-H "Authorization: Bearer sk-..." \\<br>
+&nbsp;&nbsp;-F "file=@audio.wav"
+                            </div>
+                        </div>
+                        
+                        <!-- Scene Selection & Audio Player -->
+                        <div style="background: rgba(255,255,255,0.05); padding: 16px; border-radius: 8px; margin: 16px 0;">
+                            <div style="font-size: 14px; color: var(--fg); font-weight: 600; margin-bottom: 12px;">🎵 Choose Audio Scene</div>
+                            
+                            <!-- Scene Selector Buttons -->
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px;">
+                                <button onclick="selectScene('street')" id="street-btn" class="scene-btn active" style="padding: 12px 8px; border: 2px solid var(--brand); background: var(--brand); color: var(--bg); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                    🚗 Street Scene
+                                </button>
+                                <button onclick="selectScene('restaurant')" id="restaurant-btn" class="scene-btn" style="padding: 12px 8px; border: 2px solid var(--border); background: transparent; color: var(--muted); border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s;">
+                                    🍽️ Restaurant Scene
+                                </button>
+                            </div>
+                            
+                            <!-- Audio Player -->
+                            <div style="display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px; background: rgba(0,0,0,0.2); border-radius: 6px;">
+                                <span style="font-size: 16px;">🎧</span>
+                                <span style="color: var(--fg); font-weight: 500;">Original Audio</span>
+                                <button onclick="toggleAudio()" id="audio-control" style="background: var(--brand); color: var(--bg); border: none; padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; min-width: 80px;">▶ Play</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Run Scene Detection Button -->
+                        <button onclick="runSceneDetection()" id="scene-detect-btn" class="btn primary" style="width: 100%; margin: 16px 0;">
+                            🔍 Run Scene Detection
+                        </button>
+                        
+                        <!-- API Response -->
+                        <div id="scene-response" style="display: none;">
+                            <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Response:</div>
+                            <div id="street-response" class="code" style="font-size: 11px; line-height: 1.4;">
+{<br>
+&nbsp;&nbsp;"scene": "urban_street",<br>
+&nbsp;&nbsp;"confidence": 0.94,<br>
+&nbsp;&nbsp;"detected_sources": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "traffic", "confidence": 0.89, "level_db": 80},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "voices", "confidence": 0.76, "level_db": 68},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "motorcycle", "confidence": 0.82, "level_db": 85},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "jackhammer", "confidence": 0.91, "level_db": 95},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "ambulance", "confidence": 0.88, "level_db": 90},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "fire_truck", "confidence": 0.85, "level_db": 92},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "birds", "confidence": 0.71, "level_db": 45}<br>
+&nbsp;&nbsp;]<br>
+}
+                            </div>
+                            <div id="restaurant-response" class="code" style="font-size: 11px; line-height: 1.4; display: none;">
+{<br>
+&nbsp;&nbsp;"scene": "restaurant",<br>
+&nbsp;&nbsp;"confidence": 0.91,<br>
+&nbsp;&nbsp;"detected_sources": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "background_music", "confidence": 0.87, "level_db": 72},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "background_noise", "confidence": 0.83, "level_db": 68},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "voice_alice", "confidence": 0.94, "level_db": 62, "speaker_id": "alice"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "voice_john", "confidence": 0.92, "level_db": 58, "speaker_id": "john"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "voice_unknown_1", "confidence": 0.78, "level_db": 74, "speaker_id": "unknown_1"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "voice_unknown_2", "confidence": 0.81, "level_db": 76, "speaker_id": "unknown_2"}<br>
+&nbsp;&nbsp;]<br>
+}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Extraction API -->
+                    <div class="card">
+                        <h3 style="margin-top: 0; color: var(--fg); display: flex; align-items: center; gap: 8px;">
+                            <span style="background: var(--brand); color: var(--bg); width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700;">2</span>
+                            Extraction API
+                        </h3>
+                        
+                        <!-- Source Selection -->
+                        <div id="source-selection" style="display: none;">
+                            <div style="font-size: 14px; color: var(--muted); margin-bottom: 12px;">Select sources to extract:</div>
+                            
+                            <!-- Street Scene Sources -->
+                            <div id="street-sources" style="space-y: 8px;">
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="voices-check" data-audio="voices" style="margin: 0;">
+                                    <span>🗣️</span>
+                                    <span style="flex: 1; color: var(--fg);">Voices (68dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">76% confidence</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="birds-check" data-audio="birds" style="margin: 0;">
+                                    <span>🐦</span>
+                                    <span style="flex: 1; color: var(--fg);">Birds (45dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">71% confidence</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="ambulance-check" data-audio="ambulance" style="margin: 0;">
+                                    <span>🚨</span>
+                                    <span style="flex: 1; color: var(--fg);">Ambulance (90dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">88% confidence</span>
+                                </label>
+                                
+                                <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 8px 0; padding-top: 8px;">
+                                    <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Noise sources (optional):</div>
+                                    
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                                        <input type="checkbox" id="traffic-check" data-audio="traffic" style="margin: 0;">
+                                        <span>🚗</span>
+                                        <span style="flex: 1; color: var(--fg);">Traffic (80dB)</span>
+                                        <span style="font-size: 11px; color: var(--muted);">89% confidence</span>
+                                    </label>
+                                    
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                                        <input type="checkbox" id="jackhammer-check" data-audio="jackhammer" style="margin: 0;">
+                                        <span>🔨</span>
+                                        <span style="flex: 1; color: var(--fg);">Jackhammer (95dB)</span>
+                                        <span style="font-size: 11px; color: var(--muted);">91% confidence</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Restaurant Scene Sources -->
+                            <div id="restaurant-sources" style="space-y: 8px; display: none;">
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="alice-voice-check" data-audio="alice-voice" style="margin: 0;">
+                                    <span>👤</span>
+                                    <span style="flex: 1; color: var(--fg);">Alice (me) - (62dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">94% confidence</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="john-voice-check" data-audio="john-voice" style="margin: 0;">
+                                    <span>👨</span>
+                                    <span style="flex: 1; color: var(--fg);">John M. - (58dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">92% confidence</span>
+                                </label>
+                                
+                                <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 6px; cursor: pointer;">
+                                    <input type="checkbox" id="restaurant-music-check" data-audio="restaurant-music" style="margin: 0;">
+                                    <span>🎵</span>
+                                    <span style="flex: 1; color: var(--fg);">Background Music (72dB)</span>
+                                    <span style="font-size: 11px; color: var(--muted);">87% confidence</span>
+                                </label>
+                                
+                                <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 8px 0; padding-top: 8px;">
+                                    <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">Unwanted sources (demonstration):</div>
+                                    
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                                        <input type="checkbox" id="woman1-voice-check" data-audio="woman1-voice" style="margin: 0;">
+                                        <span>👩</span>
+                                        <span style="flex: 1; color: var(--fg);">Loud Woman 1 (74dB)</span>
+                                        <span style="font-size: 11px; color: var(--muted);">78% confidence</span>
+                                    </label>
+                                    
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                                        <input type="checkbox" id="woman2-voice-check" data-audio="woman2-voice" style="margin: 0;">
+                                        <span>👩</span>
+                                        <span style="flex: 1; color: var(--fg);">Loud Woman 2 (76dB)</span>
+                                        <span style="font-size: 11px; color: var(--muted);">81% confidence</span>
+                                    </label>
+                                    
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
+                                        <input type="checkbox" id="restaurant-background-check" data-audio="restaurant-background" style="margin: 0;">
+                                        <span>🍽️</span>
+                                        <span style="flex: 1; color: var(--fg);">Background Noise (68dB)</span>
+                                        <span style="font-size: 11px; color: var(--muted);">83% confidence</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                            
+                            <button onclick="runExtraction()" id="extract-btn" class="btn primary" style="width: 100%; margin: 16px 0;">
+                                🎵 Extract Selected Sources
+                            </button>
+                            
+                            <!-- Extraction API Call -->
+                            <div id="extraction-request" style="display: none;">
+                                <div style="font-size: 12px; color: var(--muted); margin-bottom: 8px;">POST /v1/extract</div>
+                                <div class="code" style="font-size: 11px; margin-bottom: 16px;">
+curl -X POST https://api.sencial.ai/v1/extract \\<br>
+&nbsp;&nbsp;-H "Authorization: Bearer sk-..." \\<br>
+&nbsp;&nbsp;-F "file=@street_audio.wav" \\<br>
+&nbsp;&nbsp;-F "sources=voices,birds,ambulance"
+                                </div>
+                            </div>
+                            
+                            <!-- Extracted Audio Player -->
+                            <div id="extracted-player" style="display: none;">
+                                <div style="background: rgba(74, 172, 255, 0.1); border: 1px solid var(--brand); padding: 12px; border-radius: 8px;">
+                                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+                                        <span style="font-size: 16px;">🎧</span>
+                                        <span style="color: var(--brand); font-weight: 500;">Extracted Audio</span>
+                                        <button onclick="toggleExtractedAudio()" id="extracted-control" style="background: var(--brand); color: var(--bg); border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; cursor: pointer;">▶ Play Extracted</button>
+                                    </div>
+                                    <div style="font-size: 12px; color: var(--muted);">Only selected sources are audible</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Industries Section -->
+        <section class="problem">
+            <div class="container">
+                <h2>Industries Powered by Audio Intelligence</h2>
+                <p style="color: var(--muted); margin-bottom: 48px;">From robotics to defense, developers across industries need advanced audio processing capabilities</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin: 40px 0;">
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🤖</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Robotics & AI</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Robots understanding voice commands in noisy environments. AI agents isolating user speech from background audio.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🚗</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Automotive</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">In-car voice assistants that work with road noise, music, and passenger conversations.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🛡️</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Security & Defense</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Voice isolation for surveillance, battlefield communication, and threat detection systems.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🏠</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Smart Home & IoT</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Smart devices that respond to voice commands despite background TV, music, or conversations.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🏥</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Healthcare</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Medical dictation in noisy hospitals, hearing assistance devices, and patient monitoring systems.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🏭</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Industrial & Manufacturing</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Voice-controlled machinery and safety systems that work in loud factory environments.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🎮</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Gaming & VR</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Real-time voice processing for multiplayer games, spatial audio, and immersive experiences.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">📡</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Telecommunications</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Advanced noise cancellation for calls, voice enhancement, and communication systems.</p>
+                    </div>
+                    
+                    <div class="card" style="text-align: center; padding: 32px 24px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">🎬</div>
+                        <h3 style="color: var(--fg); margin-bottom: 12px;">Media & Broadcasting</h3>
+                        <p style="color: var(--muted); font-size: 14px; line-height: 1.6;">Real-time audio cleanup, live event processing, and content creation tools.</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 48px;">
+                    <h3 style="color: var(--fg); margin-bottom: 16px;">Ready to build the next generation of audio-intelligent applications?</h3>
+                    <a href="#" class="btn primary" onclick="openModal('starter')" style="font-size: 1.1rem; padding: 16px 32px;">Start Building Today</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution">
+            <div class="container">
+                <h2>Sencial API: Production-Ready Audio Intelligence</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: var(--muted); margin-bottom: 32px;">
+                    RESTful API with WebSocket support for real-time processing. Scale from prototype to production seamlessly.
+                </p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🎯</div>
+                        <h3>DETECT</h3>
+                        <p>AI-powered scene detection identifies acoustic environments and individual sound sources in real-time</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔀</div>
+                        <h3>SEPARATE</h3>
+                        <p>Advanced source separation algorithms isolate vocals, instruments, and environmental sounds into controllable streams</p>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎛️</div>
+                        <h3>PROCESS</h3>
+                        <p>Real-time voice isolation and speaker diarization with millisecond latency via WebSockets</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section class="comparison" id="pricing">
+            <div class="container">
+                <h2>API Pricing (Beta)</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 32px 0;">
+                    <div class="card">
+                        <h3 style="color: var(--fg);">Starter</h3>
+                        <p style="color: var(--muted);">Perfect for prototyping and small projects</p>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--brand); margin: 16px 0;">Free</div>
+                        <ul style="color: var(--muted); margin: 16px 0; padding-left: 20px; line-height: 1.6;">
+                            <li>10 minutes of audio processing/month</li>
+                            <li>All API endpoints</li>
+                            <li>128 kbps MP3 output</li>
+                            <li>Email support</li>
+                        </ul>
+                        <a href="#" class="market-button" onclick="openModal('starter')">Get Started Free</a>
+                    </div>
+                    
+                    <div class="card" style="border-color: var(--brand);">
+                        <h3 style="color: var(--fg);">Developer</h3>
+                        <p style="color: var(--muted);">For production apps and commercial use</p>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--brand); margin: 16px 0;">$49/mo</div>
+                        <ul style="color: var(--muted); margin: 16px 0; padding-left: 20px; line-height: 1.6;">
+                            <li>300 minutes/month included</li>
+                            <li>WebSocket real-time processing</li>
+                            <li>WAV/FLAC lossless output</li>
+                            <li>Priority support & SLA</li>
+                            <li>$0.20/min overages</li>
+                        </ul>
+                        <a href="#" class="market-button" onclick="openModal('developer')">Start Beta</a>
+                    </div>
+                    
+                    <div class="card">
+                        <h3 style="color: var(--fg);">Enterprise</h3>
+                        <p style="color: var(--muted);">Custom solutions for large-scale deployments</p>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--brand); margin: 16px 0;">Custom</div>
+                        <ul style="color: var(--muted); margin: 16px 0; padding-left: 20px; line-height: 1.6;">
+                            <li>Volume discounts available</li>
+                            <li>On-premise deployment options</li>
+                            <li>Custom model training</li>
+                            <li>Dedicated support team</li>
+                            <li>White-label solutions</li>
+                        </ul>
+                        <a href="#" class="market-button" onclick="openModal('enterprise')">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section class="markets" id="docs">
+            <div class="container">
+                <h2>Start Building Today</h2>
+                
+                <div style="text-align: center; margin: 32px 0;">
+                    <div class="card" style="max-width: 800px; margin: 0 auto;">
+                        <h3 style="color: var(--fg); margin-top: 0;">Ready to integrate audio intelligence into your application?</h3>
+                        <p style="color: var(--muted); margin-bottom: 24px;">Choose your plan below to get started with our API. Free tier available with no credit card required.</p>
+                        
+                        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                            <a href="#" class="btn primary" onclick="openModal('starter')" style="margin: 0;">Get Free API Key</a>
+                            <a href="#pricing" class="btn secondary" style="margin: 0;">View All Plans</a>
+                        </div>
+                        
+                        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border);">
+                            <h4 style="color: var(--fg); margin-bottom: 16px;">What's included:</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; text-align: left;">
+                                <div>
+                                    <strong style="color: var(--brand);">📚 Complete Documentation</strong><br>
+                                    <span style="color: var(--muted); font-size: 14px;">Detailed API reference with examples</span>
+                                </div>
+                                <div>
+                                    <strong style="color: var(--brand);">🚀 Quick Start Guide</strong><br>
+                                    <span style="color: var(--muted); font-size: 14px;">Get up and running in minutes</span>
+                                </div>
+                                <div>
+                                    <strong style="color: var(--brand);">💻 Code Examples</strong><br>
+                                    <span style="color: var(--muted); font-size: 14px;">Python, JavaScript, cURL samples</span>
+                                </div>
+                                <div>
+                                    <strong style="color: var(--brand);">💬 Developer Support</strong><br>
+                                    <span style="color: var(--muted); font-size: 14px;">Email support for all users</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Modals -->
+        
+        <!-- Starter Plan Modal -->
+        <div id="starterModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('starter')">&times;</span>
+                <h2>Get Started with Sencial API</h2>
+                <p style="color: var(--muted); margin-bottom: 24px;">Join our beta program and start building with 10 minutes of free processing per month.</p>
+                <form id="starterForm">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" placeholder="developer@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Developer Name *</label>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company/Project</label>
+                        <input type="text" name="company" placeholder="Your Company or Project Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Use Case *</label>
+                        <select name="use_case" required>
+                            <option value="">Select your main use case...</option>
+                            <option value="robotics_ai">Robotics & AI voice commands</option>
+                            <option value="automotive">Automotive voice assistants</option>
+                            <option value="security_defense">Security & defense applications</option>
+                            <option value="smart_home_iot">Smart home & IoT devices</option>
+                            <option value="healthcare">Healthcare & medical devices</option>
+                            <option value="industrial">Industrial voice control</option>
+                            <option value="gaming_vr">Gaming & VR audio</option>
+                            <option value="telecommunications">Telecommunications & calls</option>
+                            <option value="media_broadcasting">Media & broadcasting</option>
+                            <option value="hearing_assistance">Hearing assistance apps</option>
+                            <option value="music_production">Music production tools</option>
+                            <option value="research">Research & experimentation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Experience Level *</label>
+                        <select name="experience" required>
+                            <option value="">Select...</option>
+                            <option value="student">Student/Learning</option>
+                            <option value="hobbyist">Hobbyist developer</option>
+                            <option value="startup">Startup/Small team</option>
+                            <option value="professional">Professional developer</option>
+                            <option value="enterprise">Enterprise/Large company</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>How did you hear about us?</label>
+                        <select name="referral_source">
+                            <option value="">Select...</option>
+                            <option value="google">Google Search</option>
+                            <option value="github">GitHub</option>
+                            <option value="social_media">Social Media</option>
+                            <option value="blog_article">Blog/Article</option>
+                            <option value="conference">Conference/Event</option>
+                            <option value="recommendation">Friend/Colleague</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="plan" value="starter">
+                    <!-- Honeypot field for spam protection -->
+                    <input type="text" name="_gotcha" style="display: none;">
+                    <button type="submit" class="submit-btn">Create Free Account & Get API Key</button>
+                </form>
+                <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">
+                    No credit card required • 10 minutes/month included • Upgrade anytime
+                </p>
+            </div>
+        </div>
+
+        <!-- Developer Plan Modal -->
+        <div id="developerModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('developer')">&times;</span>
+                <h2>Join Developer Beta Program</h2>
+                <p style="color: var(--muted); margin-bottom: 24px;">Get early access to our production-ready API with 300 minutes/month and advanced features.</p>
+                <form id="developerForm">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" placeholder="developer@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Developer Name *</label>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" name="company" placeholder="Company Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Description *</label>
+                        <textarea name="project_description" placeholder="Describe your project and how you plan to use our API..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Monthly Usage *</label>
+                        <select name="expected_usage" required>
+                            <option value="">Select expected monthly processing...</option>
+                            <option value="< 100 minutes">Less than 100 minutes</option>
+                            <option value="100-500 minutes">100-500 minutes</option>
+                            <option value="500-2000 minutes">500-2000 minutes</option>
+                            <option value="2000+ minutes">2000+ minutes</option>
+                            <option value="not_sure">Not sure yet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Technical Background *</label>
+                        <select name="technical_background" required>
+                            <option value="">Select...</option>
+                            <option value="frontend">Frontend Developer</option>
+                            <option value="backend">Backend Developer</option>
+                            <option value="fullstack">Full-Stack Developer</option>
+                            <option value="mobile">Mobile Developer</option>
+                            <option value="ml_engineer">ML/AI Engineer</option>
+                            <option value="audio_engineer">Audio Engineer</option>
+                            <option value="product_manager">Product Manager</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Integration Timeline *</label>
+                        <select name="timeline" required>
+                            <option value="">When do you plan to integrate?</option>
+                            <option value="immediately">Immediately (1-2 weeks)</option>
+                            <option value="soon">Soon (1 month)</option>
+                            <option value="quarter">This quarter (3 months)</option>
+                            <option value="exploring">Just exploring (6+ months)</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="plan" value="developer">
+                    <!-- Honeypot field for spam protection -->
+                    <input type="text" name="_gotcha" style="display: none;">
+                    <button type="submit" class="submit-btn">Apply for Beta Access</button>
+                </form>
+                <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">
+                    Beta access subject to approval • We'll respond within 2-3 business days
+                </p>
+            </div>
+        </div>
+
+        <!-- Enterprise Modal -->
+        <div id="enterpriseModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('enterprise')">&times;</span>
+                <h2>Contact Enterprise Sales</h2>
+                <p style="color: var(--muted); margin-bottom: 24px;">Let's discuss custom solutions, volume pricing, and enterprise features for your organization.</p>
+                <form id="enterpriseForm">
+                    <div class="form-group">
+                        <label>Business Email *</label>
+                        <input type="email" name="email" placeholder="your.name@company.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="name" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Job Title *</label>
+                        <input type="text" name="title" placeholder="CTO, Product Manager, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" name="company" placeholder="Company Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Company Size *</label>
+                        <select name="company_size" required>
+                            <option value="">Select company size...</option>
+                            <option value="50-200">50-200 employees</option>
+                            <option value="200-500">200-500 employees</option>
+                            <option value="500-1000">500-1000 employees</option>
+                            <option value="1000+">1000+ employees</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Expected Monthly Processing Volume *</label>
+                        <select name="volume" required>
+                            <option value="">Select expected volume...</option>
+                            <option value="1000-5000 minutes">1,000-5,000 minutes/month</option>
+                            <option value="5000-20000 minutes">5,000-20,000 minutes/month</option>
+                            <option value="20000+ minutes">20,000+ minutes/month</option>
+                            <option value="custom">Custom/Variable volume</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Primary Interest *</label>
+                        <select name="primary_interest" required>
+                            <option value="">Select primary interest...</option>
+                            <option value="volume_pricing">Volume pricing discounts</option>
+                            <option value="on_premise">On-premise deployment</option>
+                            <option value="custom_models">Custom model training</option>
+                            <option value="white_label">White-label solutions</option>
+                            <option value="sla_support">SLA & dedicated support</option>
+                            <option value="integration">Custom integration support</option>
+                            <option value="partnership">Strategic partnership</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Project Details *</label>
+                        <textarea name="project_details" placeholder="Tell us about your use case, technical requirements, and business goals..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Contact Method *</label>
+                        <select name="contact_method" required>
+                            <option value="">How should we contact you?</option>
+                            <option value="email">Email</option>
+                            <option value="phone">Phone call</option>
+                            <option value="video">Video call</option>
+                            <option value="in_person">In-person meeting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Timeline *</label>
+                        <select name="timeline" required>
+                            <option value="">When do you need this solution?</option>
+                            <option value="asap">ASAP (within 1 month)</option>
+                            <option value="quarter">This quarter</option>
+                            <option value="next_quarter">Next quarter</option>
+                            <option value="exploring">Still exploring options</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="plan" value="enterprise">
+                    <!-- Honeypot field for spam protection -->
+                    <input type="text" name="_gotcha" style="display: none;">
+                    <button type="submit" class="submit-btn">Schedule Enterprise Consultation</button>
+                </form>
+                <p style="font-size: 12px; color: var(--muted); margin-top: 16px; text-align: center;">
+                    Our enterprise team will contact you within 1 business day
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer style="border-top: 1px solid var(--border); margin-top: 60px; padding: 32px 0; color: var(--muted); font-size: 14px; text-align: center;">
+            © <span id="year"></span> Sencial API • 
+            <a href="#docs" style="color: var(--brand); margin: 0 8px;">Documentation</a> • 
+            <a href="#pricing" style="color: var(--brand); margin: 0 8px;">Pricing</a> • 
+            <a href="#" style="color: var(--brand); margin: 0 8px;">Support</a>
+        </footer>
+    </div>
+
+
+    <!-- Audio Elements for Street Demo -->
+    <audio id="audio-street-dialogue" src="street dialogue/street dialogue.m4a" loop preload="auto"></audio>
+    <audio id="audio-traffic" src="street dialogue/traffic.m4a" loop preload="auto"></audio>
+    <audio id="audio-jackhammer" src="street dialogue/jackhammer.m4a" loop preload="auto"></audio>
+    <audio id="audio-ambulance" src="street dialogue/ambulance.m4a" loop preload="auto"></audio>
+    <audio id="audio-fire-truck" src="street dialogue/fire truck.m4a" loop preload="auto"></audio>
+    <audio id="audio-motorcycle" src="street dialogue/motorcycle.m4a" loop preload="auto"></audio>
+    <audio id="audio-voices" src="street dialogue/voices.m4a" loop preload="auto"></audio>
+    <audio id="audio-birds" src="street dialogue/birds.m4a" loop preload="auto"></audio>
+
+    <!-- Audio Elements for Restaurant Demo -->
+    <audio id="audio-restaurant-original" src="restaurant scene/noisy restaurant scene 2.m4a" loop preload="auto"></audio>
+    <audio id="audio-restaurant-music" src="restaurant scene/restaurant music.m4a" loop preload="auto"></audio>
+    <audio id="audio-restaurant-background" src="restaurant scene/restaurant background noise.m4a" loop preload="auto"></audio>
+    <audio id="audio-alice-voice" src="restaurant scene/recognized voice Alice (me).m4a" loop preload="auto"></audio>
+    <audio id="audio-john-voice" src="restaurant scene/recognized voice John M..m4a" loop preload="auto"></audio>
+    <audio id="audio-woman1-voice" src="restaurant scene/unknown voice woman 1.m4a" loop preload="auto"></audio>
+    <audio id="audio-woman2-voice" src="restaurant scene/unknown voice woman 2.m4a" loop preload="auto"></audio>
+
+    <script>
+        // Mobile/iOS detection
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        // API Demo variables
+        let audioPlaying = false;
+        let extractedPlaying = false;
+        let originalAudio = null;
+        let separateAudios = {};
+        let sceneDetected = false;
+        let extractionRunning = false;
+        let currentScene = 'street';
+
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext || null;
+        let audioContext = null;
+        const separateGainNodes = {};
+        const separateMediaSources = {};
+        const desiredGainValues = {};
+
+        // Audio mappings for different scenes
+        const sceneAudios = {
+            'street': {
+                original: 'audio-street-dialogue',
+                sources: {
+                    'traffic': 'audio-traffic',
+                    'jackhammer': 'audio-jackhammer',
+                    'ambulance': 'audio-ambulance',
+                    'fire-truck': 'audio-fire-truck',
+                    'motorcycle': 'audio-motorcycle',
+                    'voices': 'audio-voices',
+                    'birds': 'audio-birds'
+                }
+            },
+            'restaurant': {
+                original: 'audio-restaurant-original',
+                sources: {
+                    'restaurant-music': 'audio-restaurant-music',
+                    'restaurant-background': 'audio-restaurant-background',
+                    'alice-voice': 'audio-alice-voice',
+                    'john-voice': 'audio-john-voice',
+                    'woman1-voice': 'audio-woman1-voice',
+                    'woman2-voice': 'audio-woman2-voice'
+                }
+            }
+        };
+
+        // Initialize audio elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show mobile warning if on mobile device
+            if (isMobile) {
+                document.getElementById('mobile-warning').style.display = 'block';
+            }
+            
+            loadScene('street');
+        });
+
+        function loadScene(scene) {
+            currentScene = scene;
+            const sceneConfig = sceneAudios[scene];
+            
+            // Stop any playing audio
+            if (audioPlaying) {
+                toggleAudio();
+            }
+            
+            // Update original audio
+            originalAudio = document.getElementById(sceneConfig.original);
+            
+            // Update separate audios
+            separateAudios = {};
+            Object.keys(sceneConfig.sources).forEach(key => {
+                separateAudios[key] = document.getElementById(sceneConfig.sources[key]);
+            });
+
+            // Set all separate audio volumes to 0 initially
+            Object.values(separateAudios).forEach(audio => {
+                if (audio) {
+                    setAudioGain(audio.id, 0);
+                }
+            });
+            
+            // Reset UI state
+            sceneDetected = false;
+            extractionRunning = false;
+            document.getElementById('scene-response').style.display = 'none';
+            document.getElementById('source-selection').style.display = 'none';
+        }
+
+        function ensureDesiredGainEntry(audioId) {
+            if (typeof desiredGainValues[audioId] !== 'number') {
+                desiredGainValues[audioId] = 0;
+            }
+        }
+
+        function getDesiredGain(audioId) {
+            ensureDesiredGainEntry(audioId);
+            return desiredGainValues[audioId];
+        }
+
+        function setAudioGain(audioId, value) {
+            ensureDesiredGainEntry(audioId);
+            const gainValue = Math.max(value, 0);
+            desiredGainValues[audioId] = gainValue;
+
+            if (separateGainNodes[audioId]) {
+                separateGainNodes[audioId].gain.value = gainValue;
+            }
+
+            const audioEl = document.getElementById(audioId);
+            if (audioEl) {
+                audioEl.volume = Math.min(Math.max(gainValue, 0), 1.0);
+            }
+        }
+
+        function ensureAudioContext() {
+            if (!AudioContextClass) {
+                return Promise.resolve();
+            }
+
+            if (!audioContext) {
+                try {
+                    audioContext = new AudioContextClass();
+                } catch (error) {
+                    console.warn('AudioContext initialization failed:', error);
+                    audioContext = null;
+                    return Promise.resolve();
+                }
+            }
+
+            if (audioContext.state === 'suspended') {
+                return audioContext.resume().catch(error => {
+                    console.warn('AudioContext resume failed:', error);
+                });
+            }
+
+            return Promise.resolve();
+        }
+
+        function initializeSeparateAudioGraph() {
+            if (!audioContext) return;
+
+            Object.values(sceneAudios).forEach(sceneConfig => {
+                Object.values(sceneConfig.sources).forEach(audioId => {
+                    initializeAudioNode(audioId);
+                });
+            });
+        }
+
+        function initializeAudioNode(audioId) {
+            if (!audioContext || separateGainNodes[audioId]) return;
+
+            const audioEl = document.getElementById(audioId);
+            if (!audioEl) return;
+
+            try {
+                const source = audioContext.createMediaElementSource(audioEl);
+                const gainNode = audioContext.createGain();
+                gainNode.gain.value = getDesiredGain(audioId);
+                source.connect(gainNode).connect(audioContext.destination);
+                separateMediaSources[audioId] = source;
+                separateGainNodes[audioId] = gainNode;
+            } catch (error) {
+                console.warn(`Failed to initialize audio node for ${audioId}:`, error);
+            }
+        }
+
+        function selectScene(scene) {
+            // Update button states
+            document.querySelectorAll('.scene-btn').forEach(btn => {
+                btn.classList.remove('active');
+                btn.style.background = 'transparent';
+                btn.style.color = 'var(--muted)';
+            });
+            
+            const activeBtn = document.getElementById(scene + '-btn');
+            activeBtn.classList.add('active');
+            activeBtn.style.background = 'var(--brand)';
+            activeBtn.style.color = 'var(--bg)';
+            
+            // No need to update filename - we show "Original Audio" for both scenes
+            
+            // Load the scene
+            loadScene(scene);
+        }
+
+        // Step 1: Play original audio
+        function toggleAudio() {
+            const button = document.getElementById('audio-control');
+            
+            if (!audioPlaying) {
+                originalAudio.play().catch(e => console.log('Audio play failed:', e));
+                button.textContent = '⏸ Pause';
+                audioPlaying = true;
+            } else {
+                originalAudio.pause();
+                button.textContent = '▶ Play';
+                audioPlaying = false;
+            }
+        }
+
+        // Step 2: Run scene detection API simulation
+        function runSceneDetection() {
+            const button = document.getElementById('scene-detect-btn');
+            const response = document.getElementById('scene-response');
+            const sourceSelection = document.getElementById('source-selection');
+            
+            // Show loading state
+            button.textContent = '🔄 Analyzing...';
+            button.disabled = true;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Show appropriate response based on current scene
+                if (currentScene === 'street') {
+                    document.getElementById('street-response').style.display = 'block';
+                    document.getElementById('restaurant-response').style.display = 'none';
+                    document.getElementById('street-sources').style.display = 'block';
+                    document.getElementById('restaurant-sources').style.display = 'none';
+                    
+                    // Pre-select useful sources for street scene
+                    document.getElementById('voices-check').checked = true;
+                    document.getElementById('birds-check').checked = true;
+                } else {
+                    document.getElementById('street-response').style.display = 'none';
+                    document.getElementById('restaurant-response').style.display = 'block';
+                    document.getElementById('street-sources').style.display = 'none';
+                    document.getElementById('restaurant-sources').style.display = 'block';
+                    
+                    // Pre-select useful sources for restaurant scene
+                    document.getElementById('alice-voice-check').checked = true;
+                    document.getElementById('john-voice-check').checked = true;
+                    document.getElementById('restaurant-music-check').checked = true;
+                }
+                
+                response.style.display = 'block';
+                sourceSelection.style.display = 'block';
+                button.textContent = '✅ Scene Detected';
+                button.style.background = '#28a745';
+                sceneDetected = true;
+            }, 2000);
+        }
+
+        // Step 3: Run extraction API simulation
+        async function runExtraction() {
+            const button = document.getElementById('extract-btn');
+            const request = document.getElementById('extraction-request');
+            const player = document.getElementById('extracted-player');
+            
+            // Get selected sources
+            const selectedSources = [];
+            const checkboxes = document.querySelectorAll('#source-selection input[type="checkbox"]:checked');
+            checkboxes.forEach(cb => {
+                selectedSources.push(cb.getAttribute('data-audio'));
+            });
+            
+            if (selectedSources.length === 0) {
+                alert('Please select at least one source to extract');
+                return;
+            }
+            
+            // Show loading state
+            button.textContent = '🔄 Extracting...';
+            button.disabled = true;
+
+            await ensureAudioContext();
+            initializeSeparateAudioGraph();
+
+            // Update API request display
+            const sourcesParam = selectedSources.join(',');
+            const filename = currentScene === 'street' ? 'street_audio.wav' : 'restaurant_audio.wav';
+            request.querySelector('.code').innerHTML = `curl -X POST https://api.sencial.ai/v1/extract \\\\<br>
+&nbsp;&nbsp;-H "Authorization: Bearer sk-..." \\\\<br>
+&nbsp;&nbsp;-F "file=@${filename}" \\\\<br>
+&nbsp;&nbsp;-F "sources=${sourcesParam}"`;
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                request.style.display = 'block';
+                player.style.display = 'block';
+                button.textContent = '✅ Extraction Complete';
+                button.style.background = '#28a745';
+                extractionRunning = true;
+                
+                // Set volumes for extracted audio
+                Object.values(separateAudios).forEach(audio => {
+                    if (audio) setAudioGain(audio.id, 0);
+                });
+
+                selectedSources.forEach(source => {
+                    const audioEl = separateAudios[source];
+                    if (!audioEl) return;
+
+                    let volume = 0.8;
+
+                    if (source === 'alice-voice') volume = 1.0;
+                    if (source === 'john-voice') volume = 1.0;
+                    if (source === 'restaurant-music') volume = 0.25;
+
+                    setAudioGain(audioEl.id, volume);
+                });
+
+            }, 1500);
+        }
+
+        // Play extracted audio
+        async function toggleExtractedAudio() {
+            const button = document.getElementById('extracted-control');
+            
+            if (!extractedPlaying) {
+                await ensureAudioContext();
+                initializeSeparateAudioGraph();
+
+                // Stop original audio if playing
+                if (audioPlaying) {
+                    originalAudio.pause();
+                    document.getElementById('audio-control').textContent = '▶ Play';
+                    audioPlaying = false;
+                }
+                
+                // Play selected separate tracks
+                Object.values(separateAudios).forEach(audio => {
+                    if (audio && getDesiredGain(audio.id) > 0) {
+                        audio.play().catch(e => console.log('Audio play failed:', e));
+                    }
+                });
+                
+                button.textContent = '⏸ Pause Extracted';
+                extractedPlaying = true;
+            } else {
+                Object.values(separateAudios).forEach(audio => {
+                    if (audio) audio.pause();
+                });
+                button.textContent = '▶ Play Extracted';
+                extractedPlaying = false;
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const href = e.target.getAttribute('href');
+                if (href && href !== '#') {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+        
+        // Set the current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Modal functions
+        function openModal(plan) {
+            document.getElementById(plan + 'Modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(plan) {
+            document.getElementById(plan + 'Modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Form submission handlers
+        document.getElementById('starterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'starter', 'API key generated successfully! Check your email for setup instructions.');
+        });
+
+        document.getElementById('developerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'developer', 'Beta application submitted! We\'ll review and contact you within 2-3 business days.');
+        });
+
+        document.getElementById('enterpriseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            submitForm(this, 'enterprise', 'Enterprise consultation request submitted! Our sales team will contact you within 1 business day.');
+        });
+
+        // Formspree configuration
+        const FORMSPREE_CONFIG = {
+            endpoint: 'https://formspree.io/f/xnnberop'
+        };
+
+        function submitForm(form, plan, successMessage) {
+            const submitButton = form.querySelector('.submit-btn');
+            
+            // Show loading state
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Processing...';
+            submitButton.disabled = true;
+            
+            // Prepare form data for Formspree
+            const formData = new FormData(form);
+            
+            // Add metadata to form data
+            formData.append('_subject', `[Sencial API] New ${plan.charAt(0).toUpperCase() + plan.slice(1)} Plan Signup`);
+            formData.append('_replyto', formData.get('email')); // Use submitter's email as reply-to
+            formData.append('_format', 'plain'); // Plain text format
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('plan_type', plan);
+            formData.append('page_url', window.location.href);
+            formData.append('user_agent', navigator.userAgent);
+            formData.append('form_source', 'Sencial API Website'); // Legitimate source indicator
+            
+            // Send to Formspree
+            fetch(FORMSPREE_CONFIG.endpoint, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                console.log('Formspree response status:', response.status);
+                console.log('Formspree endpoint:', FORMSPREE_CONFIG.endpoint);
+                
+                if (response.ok) {
+                    return response.json().catch(() => ({})); // Handle both JSON and non-JSON responses
+                } else {
+                    throw new Error(`Form submission failed with status: ${response.status}`);
+                }
+            })
+            .then(data => {
+                console.log('Formspree response data:', data);
+                
+                // Success state
+                submitButton.textContent = 'Success!';
+                submitButton.style.background = '#28a745';
+                alert(successMessage);
+                
+                setTimeout(() => {
+                    closeModal(plan);
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = 'linear-gradient(135deg, var(--brand), #2ea0ff)';
+                    submitButton.disabled = false;
+                    form.reset();
+                }, 2000);
+            })
+            .catch((error) => {
+                console.error('Error submitting form:', error);
+                console.error('Formspree endpoint:', FORMSPREE_CONFIG.endpoint);
+                
+                // Show error state
+                submitButton.textContent = 'Error - Try Again';
+                submitButton.style.background = '#dc3545';
+                
+                setTimeout(() => {
+                    submitButton.textContent = originalText;
+                    submitButton.style.background = 'linear-gradient(135deg, var(--brand), #2ea0ff)';
+                    submitButton.disabled = false;
+                }, 3000);
+                
+                alert(`There was an error submitting the form: ${error.message}. Please try again or contact support.`);
+            });
+        }
+    </script>
+</body>
+</html>
