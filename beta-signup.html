@@ -111,7 +111,7 @@
             -webkit-appearance: none;
             appearance: none;
             height: 8px;
-            background: #e9ecef;
+            background: linear-gradient(to right, #4a90e2 0%, #4a90e2 50%, #e9ecef 50%, #e9ecef 100%);
             border-radius: 5px;
             outline: none;
         }
@@ -461,5 +461,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function updateSlider(slider) {
+            const value = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+            slider.style.background = `linear-gradient(to right, #4a90e2 0%, #4a90e2 ${value}%, #e9ecef ${value}%, #e9ecef 100%)`;
+        }
+
+        document.querySelectorAll('input[type="range"]').forEach(slider => {
+            updateSlider(slider);
+            slider.addEventListener('input', function() {
+                updateSlider(this);
+            });
+        });
+    </script>
 </body>
 </html>
