@@ -24,12 +24,9 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: #f8f9fa;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .container {
@@ -39,28 +36,29 @@
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            margin: 0 auto;
         }
 
         .header {
             background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
             color: white;
-            padding: 50px 30px;
+            padding: 60px 40px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 15px;
             font-weight: 700;
         }
 
         .header p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             opacity: 0.95;
         }
 
         .form-content {
-            padding: 40px 30px;
+            padding: 50px 40px;
         }
 
         .form-group {
@@ -72,6 +70,7 @@
             margin-bottom: 8px;
             font-weight: 600;
             color: #333;
+            font-size: 0.95rem;
         }
 
         .required {
@@ -82,9 +81,9 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px 15px;
             border: 2px solid #e1e5e9;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 16px;
             transition: all 0.3s ease;
             font-family: inherit;
@@ -95,52 +94,47 @@
         .form-group textarea:focus {
             outline: none;
             border-color: #4a90e2;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .submit-btn {
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            background: #4a90e2;
             color: white;
-            padding: 16px 40px;
+            padding: 15px 30px;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 16px;
             width: 100%;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+            background: #357abd;
         }
 
         .submit-btn:disabled {
             opacity: 0.6;
             cursor: not-allowed;
-            transform: none;
         }
 
         .info-note {
-            background: #f0f8ff;
+            background: #f0f4f8;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             margin-bottom: 30px;
-            border-left: 4px solid #4a90e2;
             font-size: 14px;
             color: #555;
         }
 
         @media (max-width: 768px) {
-            .container {
-                margin: 10px;
+            body {
+                padding: 20px 10px;
             }
 
             .header {
