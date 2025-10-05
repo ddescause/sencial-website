@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17625202925"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'AW-17625202925');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Beta - Sencial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 50px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .form-content {
+            padding: 40px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 18px;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(74, 144, 226, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .info-note {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border-left: 4px solid #4a90e2;
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .form-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Join the Hearing Revolution</h1>
+            <p>Transform your hearing experience with Sencial</p>
+        </div>
+
+        <div class="form-content">
+            <div class="info-note">
+                <strong>Early Bird Special:</strong> Join our beta waitlist for just $25/month. Be among the first to experience AI-powered hearing technology that adapts to you.
+            </div>
+
+            <form id="consumerForm" action="https://formspree.io/f/xovngbrb" method="POST">
+                <div class="form-group">
+                    <label for="name">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age_range">Age Range</label>
+                    <select id="age_range" name="age_range">
+                        <option value="">Select...</option>
+                        <option value="18-30">18-30</option>
+                        <option value="31-45">31-45</option>
+                        <option value="46-60">46-60</option>
+                        <option value="61-75">61-75</option>
+                        <option value="75+">75+</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hearing_situation">Hearing Situation <span class="required">*</span></label>
+                    <select id="hearing_situation" name="hearing_situation" required>
+                        <option value="">Select...</option>
+                        <option value="mild_hearing_loss">Mild hearing loss</option>
+                        <option value="moderate_hearing_loss">Moderate hearing loss</option>
+                        <option value="severe_hearing_loss">Severe hearing loss</option>
+                        <option value="difficulty_noisy">Difficulty in noisy environments</option>
+                        <option value="tinnitus">Tinnitus (ringing in ears)</option>
+                        <option value="audio_customization">Want better audio control</option>
+                        <option value="hearing_protection">Want to protect my hearing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hearing_aid_experience">Current hearing aid experience?</label>
+                    <select id="hearing_aid_experience" name="hearing_aid_experience">
+                        <option value="">Select...</option>
+                        <option value="never_tried">Never tried hearing aids</option>
+                        <option value="tried_disliked">Tried but didn't like them</option>
+                        <option value="currently_using">Currently using hearing aids</option>
+                        <option value="stopped_using">Used to use but stopped</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="willingness_to_pay">Would you pay $25/month for this solution? <span class="required">*</span></label>
+                    <select id="willingness_to_pay" name="willingness_to_pay" required>
+                        <option value="">Select...</option>
+                        <option value="definitely">Definitely yes</option>
+                        <option value="probably">Probably yes</option>
+                        <option value="maybe">Maybe, need to try first</option>
+                        <option value="probably_not">Probably not</option>
+                        <option value="definitely_not">Definitely not</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="biggest_challenge">What's your biggest hearing challenge?</label>
+                    <textarea id="biggest_challenge" name="biggest_challenge" placeholder="Describe the situations where you struggle most with hearing..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">When would you want to start using this? <span class="required">*</span></label>
+                    <select id="timeline" name="timeline" required>
+                        <option value="">Select...</option>
+                        <option value="immediately">Immediately</option>
+                        <option value="1-3_months">1-3 months</option>
+                        <option value="3-6_months">3-6 months</option>
+                        <option value="6-12_months">6-12 months</option>
+                        <option value="over_1_year">Over 1 year</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="market" value="consumer">
+                <input type="hidden" name="_subject" value="[Sencial Consumer] New Beta Waitlist Signup">
+                <input type="hidden" name="_next" value="https://sencial.com/beta-thank-you.html">
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="_gotcha" style="display: none;">
+
+                <button type="submit" class="submit-btn">Join Beta Waitlist</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('consumerForm');
+        const submitButton = form.querySelector('.submit-btn');
+
+        form.addEventListener('submit', function(e) {
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+        });
+    </script>
+</body>
+</html>
