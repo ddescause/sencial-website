@@ -791,14 +791,14 @@
                                 
                                 <div class="sound-source sencial-audio" style="display: none;">
                                     <div class="sound-info">
-                                        <div class="sound-emoji">🔨</div>
+                                        <div class="sound-emoji">⚒️</div>
                                         <div class="sound-details">
-                                            <div class="sound-name">Jackhammer</div>
+                                            <div class="sound-name">Sledgehammer</div>
                                             <div class="sound-level">95dB detected</div>
                                         </div>
                                     </div>
                                     <div class="volume-control">
-                                        <input type="range" class="volume-slider" min="0" max="100" value="0" data-audio="jackhammer">
+                                        <input type="range" class="volume-slider" min="0" max="100" value="0" data-audio="sledgehammer">
                                         <div class="volume-value">0%</div>
                                     </div>
                                 </div>
@@ -1242,7 +1242,7 @@
     <!-- Audio Elements for Street Demo -->
     <audio id="audio-street-dialogue" src="street dialogue/street dialogue.m4a" loop preload="auto"></audio>
     <audio id="audio-traffic" src="street dialogue/traffic.m4a" loop preload="auto"></audio>
-    <audio id="audio-jackhammer" src="street dialogue/jackhammer.m4a" loop preload="auto"></audio>
+    <audio id="audio-sledgehammer" src="street dialogue/sledgehammer.m4a" loop preload="auto"></audio>
     <audio id="audio-ambulance" src="street dialogue/ambulance.m4a" loop preload="auto"></audio>
     <audio id="audio-fire-truck" src="street dialogue/fire truck.m4a" loop preload="auto"></audio>
     <audio id="audio-motorcycle" src="street dialogue/motorcycle.m4a" loop preload="auto"></audio>
@@ -1287,7 +1287,7 @@
             originalAudio = document.getElementById('audio-street-dialogue');
             separateAudios = {
                 'traffic': document.getElementById('audio-traffic'),
-                'jackhammer': document.getElementById('audio-jackhammer'),
+                'sledgehammer': document.getElementById('audio-sledgehammer'),
                 'ambulance': document.getElementById('audio-ambulance'),
                 'fire-truck': document.getElementById('audio-fire-truck'),
                 'motorcycle': document.getElementById('audio-motorcycle'),
@@ -1632,7 +1632,7 @@
                     const sencialValues = content.querySelectorAll('.sencial-audio .volume-value');
                     
                     sencialSources[0].value = 0; sencialValues[0].textContent = '0%';    // Traffic
-                    sencialSources[1].value = 0; sencialValues[1].textContent = '0%';    // Jackhammer
+                    sencialSources[1].value = 0; sencialValues[1].textContent = '0%';    // Sledgehammer
                     sencialSources[2].value = 10; sencialValues[2].textContent = '10%';  // Ambulance
                     sencialSources[3].value = 8; sencialValues[3].textContent = '8%';    // Fire truck
                     sencialSources[4].value = 0; sencialValues[4].textContent = '0%';    // Motorcycle

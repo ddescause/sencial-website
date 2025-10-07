@@ -1097,7 +1097,7 @@ curl -X POST https://api.sencial.ai/v1/scene-detect \\<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "traffic", "confidence": 0.89, "level_db": 80},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "voices", "confidence": 0.76, "level_db": 68},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "motorcycle", "confidence": 0.82, "level_db": 85},<br>
-&nbsp;&nbsp;&nbsp;&nbsp;{"type": "jackhammer", "confidence": 0.91, "level_db": 95},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"type": "sledgehammer", "confidence": 0.91, "level_db": 95},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "ambulance", "confidence": 0.88, "level_db": 90},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "fire_truck", "confidence": 0.85, "level_db": 92},<br>
 &nbsp;&nbsp;&nbsp;&nbsp;{"type": "birds", "confidence": 0.71, "level_db": 45}<br>
@@ -1166,9 +1166,9 @@ curl -X POST https://api.sencial.ai/v1/scene-detect \\<br>
                                     </label>
                                     
                                     <label style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.02); border-radius: 6px; cursor: pointer; opacity: 0.7;">
-                                        <input type="checkbox" id="jackhammer-check" data-audio="jackhammer" style="margin: 0;">
-                                        <span>🔨</span>
-                                        <span style="flex: 1; color: var(--fg);">Jackhammer (95dB)</span>
+                                        <input type="checkbox" id="sledgehammer-check" data-audio="sledgehammer" style="margin: 0;">
+                                        <span>⚒️</span>
+                                        <span style="flex: 1; color: var(--fg);">Sledgehammer (95dB)</span>
                                         <span style="font-size: 11px; color: var(--muted);">91% confidence</span>
                                     </label>
                                 </div>
@@ -1693,7 +1693,7 @@ curl -X POST https://api.sencial.ai/v1/extract \\<br>
     <!-- Audio Elements for Street Demo -->
     <audio id="audio-street-dialogue" src="street dialogue/street dialogue.m4a" loop preload="auto"></audio>
     <audio id="audio-traffic" src="street dialogue/traffic.m4a" loop preload="auto"></audio>
-    <audio id="audio-jackhammer" src="street dialogue/jackhammer.m4a" loop preload="auto"></audio>
+    <audio id="audio-sledgehammer" src="street dialogue/sledgehammer.m4a" loop preload="auto"></audio>
     <audio id="audio-ambulance" src="street dialogue/ambulance.m4a" loop preload="auto"></audio>
     <audio id="audio-fire-truck" src="street dialogue/fire truck.m4a" loop preload="auto"></audio>
     <audio id="audio-motorcycle" src="street dialogue/motorcycle.m4a" loop preload="auto"></audio>
@@ -1735,7 +1735,7 @@ curl -X POST https://api.sencial.ai/v1/extract \\<br>
                 original: 'audio-street-dialogue',
                 sources: {
                     'traffic': 'audio-traffic',
-                    'jackhammer': 'audio-jackhammer',
+                    'sledgehammer': 'audio-sledgehammer',
                     'ambulance': 'audio-ambulance',
                     'fire-truck': 'audio-fire-truck',
                     'motorcycle': 'audio-motorcycle',
