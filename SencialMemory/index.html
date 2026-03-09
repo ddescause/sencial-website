@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17625202925"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-17625202925');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sencial Memory - Your Social Memory, Supercharged</title>
+    <meta name="description" content="Sencial Memory combines real-time audio separation with social intelligence to recognize voices, remember names, and restore independence for people with Alzheimer's, PTSD, hearing differences, and more.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            color: #7c5cfc;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #7c5cfc;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 160px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(124, 92, 252, 0.15) 0%, transparent 60%),
+                        radial-gradient(circle at 70% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(124, 92, 252, 0.2);
+            border: 1px solid rgba(124, 92, 252, 0.4);
+            color: #a78bfa;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+            background: linear-gradient(135deg, #fff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .tagline {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c5cfc 0%, #4a90e2 100%);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(124, 92, 252, 0.4);
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(124, 92, 252, 0.6);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-dark {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .section-light {
+            background: #f8f9ff;
+        }
+
+        .section-white {
+            background: white;
+        }
+
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.85rem;
+            color: #7c5cfc;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .section-dark h2 {
+            color: white;
+        }
+
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+        }
+
+        .section-dark .section-subtitle {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Scenario Cards */
+        .scenarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            perspective: 1000px;
+            min-height: 420px;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .scenario-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 420px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .scenario-card.flipped .scenario-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .scenario-front, .scenario-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scenario-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            border-radius: 20px;
+            overflow-y: auto;
+        }
+
+        .scenario-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .scenario-front h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #1a1a2e;
+        }
+
+        .scenario-example {
+            font-size: 0.85rem;
+            color: #7c5cfc;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .whisper-box {
+            background: linear-gradient(135deg, #f0ecff, #e8f0fe);
+            border-left: 4px solid #7c5cfc;
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.9rem;
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .scenario-front p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .flip-hint {
+            margin-top: auto;
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        .scenario-back h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #a78bfa;
+        }
+
+        .scenario-back p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        .testimonial-tag {
+            display: inline-block;
+            background: rgba(124, 92, 252, 0.2);
+            color: #a78bfa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-quote {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(124, 92, 252, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(124, 92, 252, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #7c5cfc;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* Pipeline / How it Works */
+        .pipeline-steps {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .pipeline-step {
+            flex: 1;
+            min-width: 180px;
+            max-width: 220px;
+            text-align: center;
+            position: relative;
+        }
+
+        .pipeline-step::after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            right: -15px;
+            width: 30px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+
+        .pipeline-number {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #7c5cfc, #4a90e2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .pipeline-step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .pipeline-step p {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+        }
+
+        /* Challenges Grid */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .challenge-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .challenge-icon {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .challenge-card h3 {
+            font-size: 1.2rem;
+            color: #1a1a2e;
+            margin-bottom: 12px;
+        }
+
+        .challenge-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Capabilities Grid */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .capability-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .capability-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(124, 92, 252, 0.3);
+        }
+
+        .capability-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .capability-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .capability-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* Privacy Section */
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .privacy-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #f0f0f0;
+        }
+
+        .privacy-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+        }
+
+        .privacy-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #1a1a2e;
+        }
+
+        .privacy-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .consent-box {
+            background: linear-gradient(135deg, #f0ecff, #e8f0fe);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .consent-box h4 {
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+        }
+
+        .consent-box p {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* CTA / Waitlist Section */
+        .cta-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 650px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .waitlist-form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #7c5cfc;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #1a1a2e;
+            color: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #7c5cfc 0%, #4a90e2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(124, 92, 252, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(124, 92, 252, 0.5);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #0d0d1a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #7c5cfc;
+        }
+
+        .footer-copy {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 130px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.4rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 60px 0;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .scenarios-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .pipeline-step::after {
+                display: none;
+            }
+
+            .pipeline-step {
+                max-width: 100%;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .challenges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .capabilities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .privacy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="/" class="nav-logo">Sencial <span>Memory</span></a>
+            <ul class="nav-links">
+                <li><a href="#scenarios">Scenarios</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#challenges">Challenges</a></li>
+                <li><a href="#waitlist">Join Waitlist</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">Built for Meta Ray-Ban Smart Glasses</div>
+            <h1>Sencial Memory</h1>
+            <div class="tagline">Your Social Memory, Supercharged.</div>
+            <p>Sencial Memory combines real-time audio separation with social intelligence to recognize voices, remember names, coach emotional regulation, and restore independence, dignity, and human connection — for people with Alzheimer's, PTSD, anger management challenges, paranoia, hearing differences, and everyone navigating the complexity of social life.</p>
+            <a href="#scenarios" class="hero-cta">See It in Action</a>
+        </div>
+    </section>
+
+    <!-- Real-Life Scenarios Section -->
+    <section class="section section-light" id="scenarios">
+        <div class="container text-center">
+            <div class="section-label">Real-Life Moments & Who It Helps</div>
+            <h2>Five Seconds That Change Everything</h2>
+            <p class="section-subtitle">A person begins speaking. Sencial isolates their voice from ambient noise in under 2 seconds. A private whisper delivers exactly what is needed. <strong>Click any card to learn who it helps.</strong></p>
+
+            <div class="scenarios-grid">
+                <!-- Card 1: Alzheimer's -->
+                <div class="scenario-card" onclick="this.classList.toggle('flipped')">
+                    <div class="scenario-card-inner">
+                        <div class="scenario-front">
+                            <div class="scenario-icon">🧠</div>
+                            <h3>Alzheimer's, Dementia, Prosopagnosia & Aphasia</h3>
+                            <div class="scenario-example">Early Alzheimer's · Caregiver Visit</div>
+                            <div class="whisper-box">
+                                "James, your home care aide. He comes on Tuesdays and Thursdays. He helped you with physical therapy yesterday. He's saying good morning and asking how you slept."
+                            </div>
+                            <p>Social recognition loss is one of the earliest symptoms of Alzheimer's, while aphasia impairs language processing and prosopagnosia makes faces unrecognizable. Sencial acts as a gentle, private memory prosthetic.</p>
+                            <div class="flip-hint">Click to learn more</div>
+                        </div>
+                        <div class="scenario-back">
+                            <h4>Who It Helps</h4>
+                            <p>Face blindness, early dementia, and language processing disorders each attack a different link in the chain of social recognition. Sencial Memory provides a private, always-on memory prosthetic — voice-first identification for prosopagnosia, gentle context for Alzheimer's patients who cannot remember caregivers' names, and real-time transcription for aphasia patients who hear words but struggle to decode them. Not a reminder that something is wrong — quiet support for living with dignity.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Hearing & Vision -->
+                <div class="scenario-card" onclick="this.classList.toggle('flipped')">
+                    <div class="scenario-card-inner">
+                        <div class="scenario-front">
+                            <div class="scenario-icon">👂</div>
+                            <h3>Hearing Loss & Vision Impairment</h3>
+                            <div class="scenario-example">Hearing Loss · Hospital Ward</div>
+                            <div class="whisper-box">
+                                "Dr. Alvarez is speaking to you now. She said your test results are normal and you can reduce your medication to once daily. She is asking if you have questions."
+                            </div>
+                            <p>For the 1.5 billion people with hearing loss, Sencial's real-time voice separation and transcription restores speech intelligibility. For the visually impaired, it identifies who entered the room and describes expressions.</p>
+                            <div class="flip-hint">Click to learn more</div>
+                        </div>
+                        <div class="scenario-back">
+                            <h4>Who It Helps</h4>
+                            <p>Clinical studies show that AI-enhanced audio separation can restore speech intelligibility to the level of normal hearing. Sencial's real-time source separation means following conversations in noisy clinics and understanding care instructions accurately. For vision loss, voice descriptions identify people, read signs and menus, and describe surroundings — providing what users call "a trusted friend whispering everything I need to know."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Mental Health -->
+                <div class="scenario-card" onclick="this.classList.toggle('flipped')">
+                    <div class="scenario-card-inner">
+                        <div class="scenario-front">
+                            <div class="scenario-icon">💚</div>
+                            <h3>Mental Health & Quality of Life</h3>
+                            <div class="scenario-example">PTSD · Crowded Environment</div>
+                            <div class="whisper-box">
+                                "You are safe. The loud sound was a door closing, not a threat. There are 6 people nearby — all in conversation. No one is approaching you from behind. Your breathing exercise: in for 4, hold for 4, out for 6."
+                            </div>
+                            <p>PTSD, autism, anger management, paranoia — these conditions share a common challenge: social environments become overwhelming. Sencial provides real-time environmental awareness and emotional coaching.</p>
+                            <div class="flip-hint">Click to learn more</div>
+                        </div>
+                        <div class="scenario-back">
+                            <h4>Who It Helps</h4>
+                            <p>13 million Americans with PTSD experience hypervigilance that makes public spaces feel dangerous. Autistic individuals face enormous cognitive load in social recognition. Anger management patients can't access therapy techniques during emotional flooding. Paranoid ideation turns ambiguous signals into threats. Sencial provides real-time environmental awareness, identity confirmation, and emotional coaching — creating the pause, clarity, and grounding that therapy alone cannot deliver in the moment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section section-dark" id="testimonials">
+        <div class="container text-center">
+            <div class="section-label">Voices of Trust</div>
+            <h2>When Memory Fades, Connection Doesn't Have To</h2>
+            <p class="section-subtitle">From Alzheimer's to PTSD, from anger management to paranoia — Sencial Memory gives people back the moments that matter most.</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Alzheimer's · Granddaughter</div>
+                    <div class="testimonial-quote">"My grandfather hadn't recognized me for two years. The first time Sencial whispered my name to him, he looked at me and said 'Lisa! How was your dancing show?' I couldn't stop crying."</div>
+                    <div class="testimonial-author">Lisa M., granddaughter</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Aphasia · Speech Recovery</div>
+                    <div class="testimonial-quote">"After my stroke, I knew exactly what I wanted to say but the words wouldn't come out. Sencial listens to my broken sentences, understands my intent, and suggests the words I'm searching for in real time."</div>
+                    <div class="testimonial-author">Robert K., stroke survivor</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Hearing Loss · Inclusion</div>
+                    <div class="testimonial-quote">"Even with my hearing aids, crowded rooms are just a wall of noise. Sencial shows me live captions of who's speaking and what they're saying — with visual cues for tone and emotion. I finally feel included."</div>
+                    <div class="testimonial-author">Thomas W., severe bilateral hearing loss</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Vision Loss · Independence</div>
+                    <div class="testimonial-quote">"I lost most of my sight three years ago. Sencial quietly tells me who just walked into the room, describes their expression, and even reads signs and menus aloud. I navigate the world with confidence again."</div>
+                    <div class="testimonial-author">Priya N., retinitis pigmentosa</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Anger Management · Coaching</div>
+                    <div class="testimonial-quote">"I've been in anger management therapy for three years. I know the techniques. But in the moment, I can't think clearly enough to use them. Sencial catches the escalation before I do and whispers exactly what my therapist would say."</div>
+                    <div class="testimonial-author">Ryan D., Intermittent Explosive Disorder</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">PTSD · Veteran Care</div>
+                    <div class="testimonial-quote">"I haven't been to a restaurant in four years. Last week, Sencial told me the loud noise was a dropped tray, identified the people around me, and coached my breathing. I stayed for the whole meal. My wife cried on the drive home."</div>
+                    <div class="testimonial-author">Marcus J., US Army veteran</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Paranoia · Reality Support</div>
+                    <div class="testimonial-quote">"At parties, I was always sure people were whispering about me. Sencial actually tells me what nearby conversations are about. Knowing the truth is more calming than any medication adjustment I've tried."</div>
+                    <div class="testimonial-author">Amir S., managing schizophrenia</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Alzheimer's · Caregiver</div>
+                    <div class="testimonial-quote">"The hardest part of caregiving is watching your father treat you like a stranger. Now he greets his aide James by name every morning — and he greets me as his daughter. That changes everything."</div>
+                    <div class="testimonial-author">Catherine R., daughter and caregiver</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Early Dementia · Independence</div>
+                    <div class="testimonial-quote">"Mom used to refuse visitors because she couldn't remember who people were and felt embarrassed. Now she hosts Sunday lunch again. She calls the glasses her 'secret helper.'"</div>
+                    <div class="testimonial-author">David T., son of dementia patient</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Alzheimer's · Clinical</div>
+                    <div class="testimonial-quote">"Social isolation accelerates cognitive decline. Any tool that keeps patients engaged with their social circle directly impacts disease progression. This is the first I've seen that does it without burdening the patient."</div>
+                    <div class="testimonial-author">Dr. Elena Vargas, neurologist</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-tag">Alzheimer's · Spousal Care</div>
+                    <div class="testimonial-quote">"After 47 years of marriage, my husband started asking me who I was. The day Sencial whispered 'Margaret, your wife' and he reached for my hand and said 'There you are, Maggie' — that's what this technology means."</div>
+                    <div class="testimonial-author">Margaret P., wife and caregiver</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="section section-white">
+        <div class="container text-center">
+            <div class="section-label">The Scale of the Challenge</div>
+            <h2>Millions of People, One Shared Need</h2>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">55M</div>
+                    <div class="stat-label">Living with dementia worldwide</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">13M</div>
+                    <div class="stat-label">Americans living with PTSD</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">7.3%</div>
+                    <div class="stat-label">Adults affected by Intermittent Explosive Disorder</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1 in 36</div>
+                    <div class="stat-label">Individuals on the autism spectrum in the US</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200M</div>
+                    <div class="stat-label">People with prosopagnosia globally</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3.5M</div>
+                    <div class="stat-label">Americans with schizophrenia</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1.5B</div>
+                    <div class="stat-label">People with hearing loss worldwide</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2M</div>
+                    <div class="stat-label">Americans living with aphasia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section section-dark" id="how-it-works">
+        <div class="container text-center">
+            <div class="section-label">The Pipeline</div>
+            <h2>How Sencial Memory Works</h2>
+            <p class="section-subtitle">Built for <strong>Meta Ray-Ban Smart Glasses</strong> and next-generation wearables.</p>
+
+            <div class="pipeline-steps">
+                <div class="pipeline-step">
+                    <div class="pipeline-number">1</div>
+                    <h4>Capture</h4>
+                    <p>5-microphone array captures all ambient audio in real time</p>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-number">2</div>
+                    <h4>Separate</h4>
+                    <p>S4D engine isolates individual voices from noise in &lt;10ms</p>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-number">3</div>
+                    <h4>Identify</h4>
+                    <p>Voice embeddings match against your personal identity graph</p>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-number">4</div>
+                    <h4>Enrich</h4>
+                    <p>Context retrieved: name, relationship, shared history, care notes</p>
+                </div>
+                <div class="pipeline-step">
+                    <div class="pipeline-number">5</div>
+                    <h4>Whisper</h4>
+                    <p>Private audio briefing delivered through open-ear speakers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Therapeutic Micro-Challenges Section -->
+    <section class="section section-light" id="challenges">
+        <div class="container text-center">
+            <div class="section-label">Therapeutic Micro-Challenges</div>
+            <h2>Real-Life Exercises, Delivered in the Moment</h2>
+            <p class="section-subtitle">Sencial Memory doesn't just observe — it actively engages users with bite-sized therapeutic exercises delivered in real-world situations, turning everyday moments into opportunities for growth.</p>
+
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <div class="challenge-icon">🎯</div>
+                    <h3>Context-Aware Prompts</h3>
+                    <p>Sencial detects real-world situations — a family dinner, a work meeting, a crowded bus — and delivers personalized micro-challenges tailored to the user's condition. "Someone at this table is speaking to you — try to greet them by name before I tell you."</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-icon">🧩</div>
+                    <h3>Graded Difficulty</h3>
+                    <p>Exercises adapt automatically based on success rate. For Alzheimer's: name recall, then relationship recall, then conversation recall. For anger management: identifying triggers, then pausing, then reframing. Each step builds on the last.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-icon">🌊</div>
+                    <h3>In-Vivo Exposure</h3>
+                    <p>For PTSD and paranoia, Sencial delivers guided exposure exercises in real situations. "There's a conversation behind you. Listen for 5 seconds and identify the topic. You're safe." Gradual, supported exposure that therapists recommend.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-icon">📊</div>
+                    <h3>Progress Reporting</h3>
+                    <p>Every completed challenge is logged — success rate, emotional state, context, duration. Therapists receive structured weekly reports: which exercises worked, which situations triggered avoidance, and how performance trends over time.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-icon">🔄</div>
+                    <h3>Therapist-Prescribed Programs</h3>
+                    <p>Clinicians can configure specific micro-challenge programs through the dashboard — adjusting difficulty, frequency, and triggers to match each patient's treatment plan. The device becomes an extension of therapy.</p>
+                </div>
+
+                <div class="challenge-card">
+                    <div class="challenge-icon">🏆</div>
+                    <h3>Gamified Engagement</h3>
+                    <p>Gentle gamification — streaks, milestone celebrations, personal bests — keeps users motivated. "You recognized 3 people at today's gathering before I helped. That's a new record." Positive reinforcement that builds confidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eight Capabilities Section -->
+    <section class="section section-dark" id="capabilities">
+        <div class="container text-center">
+            <div class="section-label">Eight Simultaneous Capabilities</div>
+            <h2>What Makes This Possible</h2>
+            <p class="section-subtitle">Every capability runs simultaneously, in real time, on device.</p>
+
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-icon">🔊</div>
+                    <h4>Real-Time Voice Separation</h4>
+                    <p>Sencial S4D streaming model separates overlapping voices from ambient noise with sub-10ms latency — in a crowded ward, a busy clinic, or a family dinner.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">⚡</div>
+                    <h4>Edge AI Processing</h4>
+                    <p>All inference runs locally on device. No cloud round-trips, no latency spikes, no connectivity dependency.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">📷</div>
+                    <h4>Face Recognition & Visual Context</h4>
+                    <p>The camera feed identifies known faces and adds visual context — matching a voice to a face, reading expressions, and describing the scene.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🎙️</div>
+                    <h4>Voice Identity Matching</h4>
+                    <p>Persistent voice graph recognizes known voices across sessions — caregivers, therapists, family members — building reliable social memory over time.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">👤</div>
+                    <h4>Passive Name Detection</h4>
+                    <p>NLP monitors clean per-speaker streams for introductions and direct addresses, silently enrolling new people without any user action required.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🌐</div>
+                    <h4>Multilingual Transcription</h4>
+                    <p>Per-speaker language detection and real-time transcription in any language — critical for multilingual care settings and diverse communities.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">💓</div>
+                    <h4>Real-Time Emotional Coaching</h4>
+                    <p>Detects escalation patterns — rising heart rate, voice pitch changes — and delivers private de-escalation cues, grounding exercises, and reality-checking before crisis.</p>
+                </div>
+
+                <div class="capability-card">
+                    <div class="capability-icon">🩺</div>
+                    <h4>Caregiver Integration</h4>
+                    <p>Accessibility mode with slower, simplified audio prompts. Companion app for caregivers enables shared oversight for Alzheimer's and dementia patients.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="section section-white" id="privacy">
+        <div class="container text-center">
+            <div class="section-label">Trust & Safety</div>
+            <h2>Privacy-First Architecture</h2>
+            <p class="section-subtitle">Everything stays on your device. No exceptions.</p>
+
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <div class="privacy-icon">🔐</div>
+                    <h4>On-Device Storage</h4>
+                    <p>All voice and face embeddings stored locally, encrypted at rest. Cloud sync is opt-in with end-to-end encryption.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <div class="privacy-icon">✅</div>
+                    <h4>Consent-First</h4>
+                    <p>Emotion analysis is strictly opt-in and mutual. Transcription only activates when explicitly triggered by the user.</p>
+                </div>
+
+                <div class="privacy-card">
+                    <div class="privacy-icon">🇪🇺</div>
+                    <h4>GDPR & AI Act</h4>
+                    <p>Full data portability and deletion on request. No third-party data monetization. Accessibility framing provides regulatory latitude.</p>
+                </div>
+            </div>
+
+            <div class="consent-box">
+                <h4>Interactive Consent Protocol</h4>
+                <p>People interacting with a Sencial user authorize their identification through preset gestures and voice interactions — a simple wave, a spoken confirmation, or a brief exchange. No one is identified or stored without their explicit, in-person consent.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Waitlist Section -->
+    <section class="cta-section" id="waitlist">
+        <div class="container">
+            <h2>Ready to Supercharge Your Social Memory?</h2>
+            <p>Sencial Memory restores independence and connection for people with hearing differences, cognitive divergences, and social recognition challenges.</p>
+
+            <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/xovngbrb" method="POST">
+                <div class="form-group">
+                    <label for="email">Email address *</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Full name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="interest">Topic of interest</label>
+                    <select id="interest" name="interest">
+                        <option value="">Select...</option>
+                        <option value="alzheimers">Alzheimer's & Dementia</option>
+                        <option value="hearing">Hearing Differences</option>
+                        <option value="autism">Autism Spectrum</option>
+                        <option value="anger">Anger Management</option>
+                        <option value="paranoia">Paranoia & Psychotic Features</option>
+                        <option value="ptsd">PTSD & Hypervigilance</option>
+                        <option value="aphasia">Aphasia & Language Processing</option>
+                        <option value="vision">Vision Loss</option>
+                        <option value="caregiving">Caregiving</option>
+                        <option value="clinical">Clinical / Research</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <input type="hidden" name="_subject" value="[Sencial Memory] New Waitlist Signup">
+                <input type="hidden" name="_replyto" value="">
+                <input type="hidden" name="form_source" value="Sencial Memory Website">
+                <!-- Honeypot -->
+                <input type="text" name="_gotcha" style="display: none;">
+                <button type="submit" class="submit-btn">Join the Waitlist</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="/">Sencial.com</a>
+        </div>
+        <div class="footer-copy">&copy; 2026 Sencial Inc. | New York, NY</div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form submission
+        const form = document.getElementById('waitlistForm');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = form.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+
+            // Set reply-to from email field
+            const emailVal = form.querySelector('input[name="email"]').value;
+            form.querySelector('input[name="_replyto"]').value = emailVal;
+
+            const formData = new FormData(form);
+            formData.append('timestamp', new Date().toISOString());
+            formData.append('page_url', window.location.href);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+                if (response.ok) {
+                    submitBtn.textContent = 'You\'re on the list!';
+                    submitBtn.style.background = '#28a745';
+                    form.reset();
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            })
+            .catch(error => {
+                submitBtn.textContent = 'Error - Try Again';
+                submitBtn.style.background = '#dc3545';
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
+        });
+
+        // Nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(26, 26, 46, 0.98)';
+            } else {
+                nav.style.background = 'rgba(26, 26, 46, 0.95)';
+            }
+        });
+    </script>
+
+</body>
+</html>
