@@ -269,41 +269,32 @@
         .stat-num { font-size: 2.4rem; font-weight: 800; color: #7c5cfc; margin-bottom: 4px; }
         .stat-label { font-size: 0.86rem; color: rgba(200,204,216,0.55); line-height: 1.45; }
 
-        /* ═══════════════════ GLASSES SHOWCASE ═══════════════════ */
-        .glasses-row {
-            display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;
-            margin-bottom: 56px;
+        /* ═══════════════════ GLASSES ROTATOR ═══════════════════ */
+        .glasses-rotator {
+            position: relative;
+            width: 340px; height: 260px;
+            margin: 0 auto 20px;
         }
-        .glasses-row img {
-            width: 240px; height: 240px; object-fit: contain;
-            border-radius: 18px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 20px;
-            transition: transform .35s, box-shadow .35s;
+        .glasses-rotator img {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%; object-fit: contain;
+            opacity: 0;
+            filter: drop-shadow(0 8px 32px rgba(100, 120, 255, 0.18));
+            transition: opacity 0.8s ease;
         }
-        .glasses-row img:hover {
-            transform: scale(1.06);
-            box-shadow: 0 10px 36px rgba(124,92,252,0.2);
-        }
+        .glasses-rotator img.active { opacity: 1; }
         .glasses-caption {
-            text-align: center; margin-top: 14px;
+            text-align: center; margin-top: 8px; margin-bottom: 56px;
             font-size: 0.85rem; color: rgba(255,255,255,0.35);
         }
 
         /* ═══════════════════ PIPELINE ═══════════════════ */
         .pipeline {
             display: flex; justify-content: center; align-items: flex-start;
-            gap: 14px; flex-wrap: wrap; margin-top: 50px;
+            gap: 14px; margin-top: 50px;
         }
         .pipe-step {
             flex: 1; min-width: 170px; max-width: 200px; text-align: center;
-            position: relative;
-        }
-        .pipe-step:not(:last-child)::after {
-            content: ''; position: absolute; top: 33px; right: -10px;
-            width: 20px; height: 2px;
-            background: linear-gradient(90deg, rgba(124,92,252,0.4), transparent);
         }
         .pipe-num {
             width: 66px; height: 66px; border-radius: 50%;
@@ -445,9 +436,8 @@
             .scenario-glasses img { width: 100px; }
             .scenario-card { padding: 28px 24px; }
             .pipeline { flex-direction: column; align-items: center; }
-            .pipe-step::after { display: none; }
             .pipe-step { max-width: 100%; }
-            .glasses-row img { width: 150px; height: 150px; }
+            .glasses-rotator { width: 240px; height: 180px; }
             .story-card { flex: 0 0 280px; }
             .challenges-grid { grid-template-columns: 1fr; }
             .cap-grid { grid-template-columns: 1fr; }
@@ -699,16 +689,16 @@
         <h2 class="reveal">How Sencial Memory Works</h2>
         <p class="section-sub reveal">Built for <strong style="color:#fff;">Meta Ray-Ban Smart Glasses</strong> and next-generation wearables.</p>
 
-        <div class="glasses-row reveal">
-            <img src="images/sencial-glasses-1.webp" alt="Meta Ray-Ban Smart Glasses — angle 1">
+        <div class="glasses-rotator reveal" id="glassesRotator">
+            <img src="images/sencial-glasses-1.webp" alt="Meta Ray-Ban Smart Glasses — angle 1" class="active">
             <img src="images/sencial-glasses-2.webp" alt="Meta Ray-Ban Smart Glasses — angle 2">
             <img src="images/sencial-glasses-3.webp" alt="Meta Ray-Ban Smart Glasses — angle 3">
         </div>
-        <div class="glasses-caption reveal">What users see and hear through Meta Ray-Ban Smart Glasses</div>
+        <div class="glasses-caption reveal">Built for <strong style="color:#fff;">Meta Ray-Ban Smart Glasses</strong> and next-generation wearables.</div>
 
         <div class="pipeline reveal">
             <div class="pipe-step"><div class="pipe-num">1</div><h4>Capture</h4><p>5-microphone array captures all ambient audio in real time</p></div>
-            <div class="pipe-step"><div class="pipe-num">2</div><h4>Separate</h4><p>S4D engine isolates individual voices from noise in &lt;10ms</p></div>
+            <div class="pipe-step"><div class="pipe-num">2</div><h4>Separate</h4><p>AI engine isolates individual voices from noise in &lt;10ms</p></div>
             <div class="pipe-step"><div class="pipe-num">3</div><h4>Identify</h4><p>Voice embeddings match against your personal identity graph</p></div>
             <div class="pipe-step"><div class="pipe-num">4</div><h4>Enrich</h4><p>Context retrieved: name, relationship, shared history, care notes</p></div>
             <div class="pipe-step"><div class="pipe-num">5</div><h4>Whisper</h4><p>Private audio briefing delivered through open-ear speakers</p></div>
@@ -742,7 +732,7 @@
         <p class="section-sub reveal">Every capability runs simultaneously, in real time, on device.</p>
 
         <div class="cap-grid">
-            <div class="cap-card reveal"><div class="cap-icon">🔊</div><h4>Real-Time Voice Separation</h4><p>S4D streaming model separates overlapping voices from ambient noise with sub-10ms latency.</p></div>
+            <div class="cap-card reveal"><div class="cap-icon">🔊</div><h4>Real-Time Voice Separation</h4><p>AI streaming model separates overlapping voices from ambient noise with sub-10ms latency.</p></div>
             <div class="cap-card reveal"><div class="cap-icon">⚡</div><h4>Edge AI Processing</h4><p>All inference runs locally on device. No cloud round-trips, no latency spikes.</p></div>
             <div class="cap-card reveal"><div class="cap-icon">📷</div><h4>Face Recognition &amp; Visual Context</h4><p>Camera identifies known faces — matching voice to face, reading expressions, describing the scene.</p></div>
             <div class="cap-card reveal"><div class="cap-icon">🎙️</div><h4>Voice Identity Matching</h4><p>Persistent voice graph recognizes known voices across sessions — building reliable social memory.</p></div>
@@ -857,6 +847,15 @@ function startAuto() {
 startAuto();
 track.addEventListener('pointerdown', () => clearInterval(auto));
 track.addEventListener('pointerup', () => { clearInterval(auto); startAuto(); });
+
+// Glasses rotator — cycle through 3 angles
+const glassesImgs = document.querySelectorAll('#glassesRotator img');
+let glassesIdx = 0;
+setInterval(() => {
+    glassesImgs[glassesIdx].classList.remove('active');
+    glassesIdx = (glassesIdx + 1) % glassesImgs.length;
+    glassesImgs[glassesIdx].classList.add('active');
+}, 2500);
 
 // Smooth nav scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
